@@ -27,9 +27,23 @@ router.get("/:_id",async (request: Request, response: Response, next: NextFuncti
     }
 });
 
+// Route for getting one by userId :
+router.get("/by-user/:userId",async (request: Request, response: Response, next: NextFunction) => {
+    try{
+        const userId = request.params.userId;
+        const cart = await logic.getOneCartByUserId(userId);
+        response.json(cart);
+    }
+    catch(err: any) {
+        next(err);
+    }
+});
+
 // Route for adding a :
 router.post("/",async (request: Request, response: Response, next: NextFunction) => {
     try{
+        const now = new Date().toLocaleString();
+        request.body.creationDate = now;
         const cartToAdd = new ShoppingCartModel(request.body);
         const addedCart = await logic.addCart(cartToAdd);
         response.status(201).json(addedCart);

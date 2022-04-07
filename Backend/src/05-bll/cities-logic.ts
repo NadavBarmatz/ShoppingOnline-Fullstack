@@ -1,4 +1,4 @@
-import ClientError from '../03-Models/client-error';
+import ClientError from '../03-models/client-error';
 import mongoose from 'mongoose';
 import { CityModel, ICityModel } from '../03-models/city-model';
 

@@ -25,6 +25,17 @@ router.get("/:_id", async (request : Request, response : Response, next : NextFu
     }
 });
 
+// Route for getting all by category:
+router.get("/by-category/:catId", async (request : Request, response : Response, next : NextFunction) => {
+    try {
+        const _id = request.params.catId;
+        const products = await logic.getProductsByCategory(_id);
+        response.json(products);
+    } catch (err : any) {
+        next(err);
+    }
+});
+
 // Route for adding a :
 router.post("/", async (request : Request, response : Response, next : NextFunction) => {
     try {

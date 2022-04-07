@@ -25,6 +25,7 @@ server.use("/api/products", productsController);
 server.use("/api/carts", shoppingCartsController);
 server.use("/api/cart-products", cartProductsController);
 server.use("/api/orders", ordersController);
+
 server.use(errorsHandler);
 
 server.listen(config.port, () => console.log("Listening..."));

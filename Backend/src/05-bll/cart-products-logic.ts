@@ -1,6 +1,7 @@
-import ClientError from '../03-Models/client-error';
+import ClientError from '../03-models/client-error';
 import mongoose from 'mongoose';
 import { CartProductModel, ICartProductModel } from '../03-models/cart-product-model';
+import productLogic from "./products-logic";
 
 async function getAllCartProducts(): Promise<ICartProductModel[]> {
     return CartProductModel.find().populate("product").populate("shoppingCart");
@@ -18,7 +19,13 @@ async function getAllCartProducts(): Promise<ICartProductModel[]> {
 //     return cartProd;
 // }
 
-async function addCartProduct(cartProd: ICartProductModel): Promise<ICartProductModel> {
+async function addCartProduct(cartProd: ICartProductModel, prodId: string): Promise<ICartProductModel> {
+    // Getting the price of the prod:
+    const ogProductPrice = (await productLogic.getOneProduct(prodId)).price;
+
+    // Setting total price for cart prod
+    cartProd.totalPrice = cartProd.quantity * ogProductPrice;
+
     // Validate cart:
     const errors = cartProd.validateSync();
     if(errors) throw new ClientError(400, errors.message);

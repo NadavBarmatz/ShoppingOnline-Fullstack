@@ -1,4 +1,4 @@
-import ClientError from '../03-Models/client-error';
+import ClientError from '../03-models/client-error';
 import mongoose from 'mongoose';
 import { IShoppingCartModel, ShoppingCartModel } from '../03-models/shopping-cart-model';
 
@@ -14,6 +14,18 @@ async function getOneCart(_id: string): Promise<IShoppingCartModel> {
 
     // Validate cart existence:
     if(!cart) throw new ClientError(404, "Shopping Cart not found");
+
+    return cart;
+}
+
+async function getOneCartByUserId(userId: string): Promise<IShoppingCartModel | any> {
+    // Validate _id:
+    if (!mongoose.isValidObjectId(userId)) throw new ClientError(404, `userId ${userId} is invalid`);
+
+    const cart = await ShoppingCartModel.findOne({"userId": userId}).populate("user").exec();
+
+    // // Validate cart existence:
+    // if(cart.length === 0) throw new ClientError(404, "Current user has no cart");
 
     return cart;
 }
@@ -56,6 +68,7 @@ async function deleteCart(_id: string) {
 export default {
     getAllCarts,
     getOneCart,
+    getOneCartByUserId,
     addCart,
     updateCart,
     deleteCart

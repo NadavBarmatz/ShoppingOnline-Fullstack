@@ -1,5 +1,5 @@
 
-import ClientError from '../03-Models/client-error';
+import ClientError from '../03-models/client-error';
 import mongoose from 'mongoose';
 import { IUserModel, UserModel } from '../03-models/user-model';
 

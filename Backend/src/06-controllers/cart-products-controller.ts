@@ -28,8 +28,10 @@ router.get("/",async (request: Request, response: Response, next: NextFunction) 
 // Route for adding a :
 router.post("/",async (request: Request, response: Response, next: NextFunction) => {
     try{
+        const prodId = request.body.productId;
+        console.log(prodId)
         const cartProdToAdd = new CartProductModel(request.body);
-        const addedCartProd = await logic.addCartProduct(cartProdToAdd);
+        const addedCartProd = await logic.addCartProduct(cartProdToAdd, prodId);
         response.status(201).json(addedCartProd);
     }
     catch(err: any) {

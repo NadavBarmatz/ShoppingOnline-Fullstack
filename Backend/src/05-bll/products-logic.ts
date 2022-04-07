@@ -1,4 +1,4 @@
-import ClientError from '../03-Models/client-error';
+import ClientError from '../03-models/client-error';
 import mongoose from 'mongoose';
 import { IProductModel, ProductModel } from '../03-models/product-model';
 
@@ -9,13 +9,25 @@ async function getAllProducts(): Promise<IProductModel[]> {
 async function getOneProduct(_id: string): Promise<IProductModel> {
     // Validate _id:
     if (!mongoose.isValidObjectId(_id)) throw new ClientError(404, `_id ${_id} is invalid`);
-
+    
     const product = await ProductModel.findById(_id).populate("category").exec();
-
+    
     // Validate product existence:
     if(!product) throw new ClientError(404, "Product not found");
-
+    
     return product;
+}
+
+async function getProductsByCategory(_id: string): Promise<IProductModel[] | any> {
+    // Validate _id:
+    if (!mongoose.isValidObjectId(_id)) throw new ClientError(404, `_id ${_id} is invalid`);
+
+    const products = await ProductModel.find({"categoryId": _id}).populate("category").exec();
+
+    // If empty throw error:
+    if(products.length === 0) throw new ClientError(404, "There are no products in the requested category");
+
+    return products;
 }
 
 async function addProduct(product: IProductModel): Promise<IProductModel> {
@@ -42,10 +54,6 @@ async function updateProduct(product: IProductModel): Promise<IProductModel> {
     return updatedProduct;
 }
 
-async function getProductsByCategoryId(_id: string): Promise<[]> {
-    return [];
-}
-
 async function deleteProduct(_id: string) {
     // Validate _id:
     if(!mongoose.isValidObjectId(_id)) throw new ClientError(404, `_id ${_id} is not valid`);
@@ -60,6 +68,7 @@ async function deleteProduct(_id: string) {
 export default {
     getAllProducts,
     getOneProduct,
+    getProductsByCategory,
     addProduct,
     updateProduct,
     deleteProduct
