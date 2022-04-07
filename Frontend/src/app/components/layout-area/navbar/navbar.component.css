@@ -1,0 +1,14 @@
+div {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    /* background-color: lightblue; */
+    /* position: sticky;
+    top: 0; */
+}
+
+.links {
+    width: 40%;
+    margin: auto;
+}

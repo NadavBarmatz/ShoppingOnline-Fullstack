@@ -1,0 +1,11 @@
+<section>
+    <h2>Best Sellers</h2>
+    
+    <div class="boxes">
+        <div class="category-box" *ngFor="let cat of categories">
+            <h3>{{cat}}</h3>
+            <p>our premium</p> <p>{{cat.toLowerCase()}} collection</p>
+            <button>SEE MORE</button>
+        </div>
+    </div>
+</section>    

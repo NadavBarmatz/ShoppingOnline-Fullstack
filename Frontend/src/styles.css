@@ -1,0 +1,50 @@
+:root {
+    --font800: ohno-blazeface, sans-serif;
+    --font400: 'Poppins', sans-serif;
+    --clr800: #496c56;
+    --clr400: #c7dec1;
+    --clr200: #f0f7f1;
+    --clr000: #fafafa;
+}
+
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    text-align: center;
+    font-family: var(--font400);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font800);
+    color: var(--clr800);
+}
+
+a {
+    text-decoration: none;
+    font-family: var(--font400);
+}
+
+button {
+    background-color: var(--clr800);
+    color: var(--clr000);
+    border: none;
+    border-radius: 10vh;
+    padding: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--clr200);
+    color: var(--clr800);
+}
+

@@ -1,0 +1,25 @@
+section {
+    height: 100%;
+    display: flex;
+}
+
+section > div {
+    width: 40%;
+    margin: auto;
+}
+
+.description {
+    text-align: left;
+}
+
+h1 {
+    font-size: xxx-large;
+}
+
+p {
+    color: var(--clr800);
+}
+
+img {
+    width: 100%;
+}

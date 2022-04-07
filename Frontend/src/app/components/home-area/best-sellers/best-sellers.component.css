@@ -1,0 +1,36 @@
+section {
+    height: 100%;
+}
+
+.boxes {
+    display: flex;
+    width: 50%;
+    margin: auto;
+    justify-content: space-around;
+}
+
+.category-box {
+    position: relative;
+    background-color: var(--clr400);
+    border-radius: 8vh;
+    width: 32%;
+    aspect-ratio: 1;
+    display: grid;
+    align-content: center;
+}
+
+h2 {
+    font-family: var(--font400);
+}
+
+h3 {
+    color: var(--clr000);
+    font-size: 2em;
+}
+
+button {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}

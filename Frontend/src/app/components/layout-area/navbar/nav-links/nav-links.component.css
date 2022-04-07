@@ -1,0 +1,14 @@
+div {
+    display: flex;
+    justify-content: space-around;
+}
+
+a {
+    color: var(--clr000);
+    transition: all 350ms ease-in-out;
+}
+
+
+a:hover {
+    font-size: 1.2em;
+}

@@ -1,0 +1,31 @@
+div {
+    position: relative;
+    height: 100%;
+    background-image: url("../../../../assets/images/header/header.png");
+    background-size: 100% 95%;
+    background-position: 50% -50%;
+    background-repeat: no-repeat;
+    border: 1px solid transparent;
+}
+
+h1 {
+    font-size: 8em;
+    text-align: left;
+    width: fit-content;
+    margin: 5% auto;
+    color: var(--clr000);
+}
+
+img {
+    width: 30%;
+    position: absolute;
+    top: 20%;
+    right: 15%;
+}
+
+button {
+    position: absolute;
+    bottom: 0;
+    transform: translateX(-50%);  
+    font-size: 1.5em;
+}

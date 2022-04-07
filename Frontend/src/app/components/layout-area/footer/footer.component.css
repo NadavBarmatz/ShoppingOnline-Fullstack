@@ -1,0 +1,28 @@
+div {
+    display: flex;
+    align-items: center;
+    
+}
+
+.inner-links {
+    width: 100%;
+    justify-content: space-around;
+}
+
+.links {
+    width: 35%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+a {
+    color: var(--clr000);
+    transition: all 350ms ease-in-out;
+}
+
+
+a:hover {
+    font-size: 1.2em;
+}

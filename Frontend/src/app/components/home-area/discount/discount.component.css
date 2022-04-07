@@ -1,0 +1,46 @@
+.container {
+    height: 50%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    background-color: var(--clr200);
+    border-radius: 10vh;
+}
+
+.image {
+    width: 40%;
+}
+
+img {
+    width: 50%;
+    transform: rotate(315deg);
+}
+
+.description {
+    text-align: left;
+    width: 50%;
+    height: 70%;
+    display: grid;
+}
+
+h2 {
+    font-size: xxx-large;
+}
+
+input {
+    width: 80%;
+    height: 50%;
+    border-radius: 1vh;
+    margin-right: 10px;
+    border: none;
+}
+
+input::placeholder {
+    font-size: 2em;
+    color: var(--clr400);
+}
+
+button {
+    padding: 20px;
+}
