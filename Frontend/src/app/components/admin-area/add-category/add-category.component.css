@@ -1,0 +1,22 @@
+div {
+    padding: 80px;
+}
+
+form {
+    width: 30%;
+    margin: auto;
+    text-align: left;
+}
+
+label, input {
+    width: 100%;
+}
+
+input {
+    margin-bottom: 20px;
+}
+
+button {
+    margin-left: 50%;
+    transform: translateX(-50%);
+}

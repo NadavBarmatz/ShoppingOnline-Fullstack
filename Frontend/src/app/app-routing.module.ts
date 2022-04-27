@@ -1,3 +1,5 @@
+import { UserGuard } from './services/user.guard';
+import { AdminGuard } from './services/admin.guard';
 import { ProductsListComponent } from './components/products-area/products-list/products-list.component';
 import { HomeComponent } from './components/home-area/home/home.component';
 import { NgModule } from '@angular/core';
@@ -5,8 +7,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/auth-area/login/login.component';
 import { LogoutComponent } from './components/auth-area/logout/logout.component';
 import { RegisterComponent } from './components/auth-area/register/register.component';
-import { AddProductComponent } from './components/products-area/add-product/add-product.component';
+import { AddProductComponent } from './components/admin-area/add-product/add-product.component';
 import { MyCartComponent } from './components/cart-area/my-cart/my-cart.component';
+import { AddCategoryComponent } from './components/admin-area/add-category/add-category.component';
+import { CartPageComponent } from './components/cart-area/cart-page/cart-page.component';
 
 const routes: Routes = [
 
@@ -16,13 +20,14 @@ const routes: Routes = [
   {path: "logout", component: LogoutComponent},
 
   // // Admin routes:
-  {path: "add-product", component: AddProductComponent},
+  {path: "add-product", canActivate: [AdminGuard], component: AddProductComponent},
+  {path: "add-category", canActivate: [AdminGuard], component: AddCategoryComponent},
 
   // // Site routes:
   { path: "home", component: HomeComponent },
-  { path: "shop/all-products", component: ProductsListComponent },
-  { path: "shop/:keyWord", component: ProductsListComponent},
-  { path: "my-cart", component: MyCartComponent },
+  { path: "shop/all-products", canActivate: [UserGuard], component: ProductsListComponent },
+  { path: "shop/:keyWord", canActivate: [UserGuard], component: ProductsListComponent},
+  { path: "my-cart", canActivate: [UserGuard], component: CartPageComponent },
 
   // Fallbacks routes:
   { path: "", pathMatch: "full", redirectTo: "home" },

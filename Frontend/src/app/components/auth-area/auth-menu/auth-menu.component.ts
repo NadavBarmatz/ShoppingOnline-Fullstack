@@ -9,9 +9,15 @@ import { CartState } from 'src/app/mobx/cart-state';
 })
 export class AuthMenuComponent implements OnInit {
 
+  public openMenu: boolean = false;
+
   constructor(public authState: AuthState, public cartState: CartState) { }
 
   ngOnInit(): void {
+  }
+
+  public openSideMenu() {
+    this.openMenu = ! this.openMenu;
   }
 
 }

@@ -22,7 +22,7 @@ export class CategoriesService {
     return categories;
   }
   
-  public async addCategories(category: CategoryModel): Promise<CategoryModel> {
+  public async addCategory(category: CategoryModel): Promise<CategoryModel> {
     const addedCategory = await firstValueFrom(this.http.post<CategoryModel>(this.categoriesUrl, category));
     this.categoriesState.addCategory(addedCategory);
     return addedCategory;

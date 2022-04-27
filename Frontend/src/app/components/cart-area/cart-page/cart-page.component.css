@@ -1,0 +1,11 @@
+.container {
+    width: 60%;
+    margin: auto;
+    padding: 8%;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 5% 0;
+}

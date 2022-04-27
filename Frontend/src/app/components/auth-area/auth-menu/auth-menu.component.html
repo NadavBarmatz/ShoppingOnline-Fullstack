@@ -6,4 +6,12 @@
         <span>Hello {{authState.fullName}} |  <a routerLink="/logout">Logout</a></span>
     </p>
     <p *ngIf="authState.isLoggedIn">{{cartState.productTotalCount}} products in your cart</p>
+
+    <ng-container *ngIf="authState.isAdmin">
+        <mat-icon class="menu-icon" *ngIf="!openMenu" (click)="openSideMenu()">menu</mat-icon>
+        <mat-icon class="menu-icon" *ngIf="openMenu" (click)="openSideMenu()">close</mat-icon>
+    
+        <app-admin-menu [openMenu]="openMenu"></app-admin-menu>
+
+    </ng-container>
 </div>

@@ -2,30 +2,22 @@ div {
     height: 100%;
     position: relative;
     display: grid;
-    grid-template: "nav" 0.5fr
-                    "header" 5fr
-                    "main"
-                    "footer" 0.5fr;
+    grid-template-rows: 0.6fr 5fr min-content 0.5fr;
 }
 
 nav {
-    grid-area: "nav";
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 100;
     background-color: var(--clr400);
 }
 
-header {
-    grid-area: "header";
-}
-
 main {
-    grid-area: "main";
+    height: max-content;
 }
 
 footer {
-    grid-area: "footer";
     background-color: var(--clr400);
 }
 

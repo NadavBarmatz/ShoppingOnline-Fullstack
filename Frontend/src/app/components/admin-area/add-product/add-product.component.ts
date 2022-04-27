@@ -1,4 +1,4 @@
-import { NotificationsService } from './../../../services/notifications.service';
+import { NotificationsService } from '../../../services/notifications.service';
 import { Component, OnInit } from '@angular/core';
 import { CategoryModel } from 'src/app/models/category.model';
 import { ProductModel } from 'src/app/models/product.model';

@@ -15,9 +15,9 @@ div > div > main {
 }
 
 .cart-tab {
-    position: absolute;
+    position: fixed;
     left: 0;
-    top: 0;
+    top: 30vh;
     height: 8vh;
     aspect-ratio: 0.8;
     background-color: var(--clr800);
@@ -26,15 +26,21 @@ div > div > main {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: all 0.45s ease-in-out;
+    transition: all 0.45s ease-in;
 }
 
 .cart-tab:hover {
     aspect-ratio: 1;
+    transition: all 0.15s ease-in-out;
+}
+
+.cart-tab:active {
+    transition: all 0.05s ease-in-out;
+    aspect-ratio: 1.2;
 }
 
 .cart-tab > img {
-    width: 50%;
+    width: 70%;
 }
 
 .hide {
@@ -43,9 +49,10 @@ div > div > main {
 
 .side-cart {
     width: 35%;
-    
-    position: absolute;
-    top: 10%;
+    max-height: 40vh;
+    overflow-y: scroll;
+    position: fixed;
+    top: 38vh;
     padding: 20px;
     background-color: var(--clr200);
     border: 2px solid var(--clr400);
@@ -54,6 +61,15 @@ div > div > main {
     transition: all 0.5s ease-in-out;
 }
 
+.side-cart::-webkit-scrollbar {
+    background-color: var(--clr200);
+    width: var(--scrollbarWidth);
+}
+
+.side-cart::-webkit-scrollbar-thumb {
+    background-color: var(--clr400);
+    border-radius: var(--scrollbarWidth);
+}
 
 .show-cart {
     transform: translateX(0);

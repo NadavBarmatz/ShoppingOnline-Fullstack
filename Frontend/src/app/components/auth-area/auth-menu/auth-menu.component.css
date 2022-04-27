@@ -2,3 +2,11 @@ div {
     position: relative;
     right: 10px;
 }
+
+.menu-icon {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    z-index: 50;
+    cursor: pointer;
+}

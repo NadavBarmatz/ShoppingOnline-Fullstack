@@ -5,10 +5,13 @@
     --clr400: #c7dec1;
     --clr200: #f0f7f1;
     --clr000: #fafafa;
+
+    --scrollbarWidth: 8px;
 }
 
 html, body {
     height: 100%;
+    width: 100%;
     padding: 0;
     margin: 0;
 }
@@ -22,6 +25,7 @@ html, body {
 body {
     text-align: center;
     font-family: var(--font400);
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -48,6 +52,6 @@ button:hover {
     color: var(--clr800);
 }
 
-
+/* 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */

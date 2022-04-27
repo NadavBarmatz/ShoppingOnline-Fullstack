@@ -65,6 +65,11 @@ export class AuthState{
     }
 
     @computed
+    public get isAdmin(): boolean {
+        return this.user?.role === "Admin";
+    }
+
+    @computed
     public get fullName(): string {
         return `${this.user.firstName} ${this.user.lastName}`;
     }

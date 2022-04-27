@@ -1,0 +1,19 @@
+.menu {
+    position: absolute;
+    top: 5.9vh;
+    right: 0;
+    height: 100vh;
+    width: 300px;
+    background-color: rgba(96, 96, 96, 0.2);
+    transform: translateX(105%);
+    transition: all 0.5s ease-in;
+}
+
+.slide-in {
+    transform: translateX(5%);
+}
+
+.links {
+    padding: 5%;
+    display: grid;
+}

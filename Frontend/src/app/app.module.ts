@@ -23,10 +23,14 @@ import { ProductsListComponent } from './components/products-area/products-list/
 import { ProductCardComponent } from './components/products-area/product-card/product-card.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
 import { ProductModalComponent } from './components/products-area/product-modal/product-modal.component';
 import { MyCartComponent } from './components/cart-area/my-cart/my-cart.component';
 import { MobxAngularModule } from "mobx-angular";
-import { AddProductComponent } from './components/products-area/add-product/add-product.component';
+import { AddProductComponent } from './components/admin-area/add-product/add-product.component';
+import { AddCategoryComponent } from './components/admin-area/add-category/add-category.component';
+import { AdminMenuComponent } from './components/admin-area/admin-menu/admin-menu.component';
+import { CartPageComponent } from './components/cart-area/cart-page/cart-page.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +54,9 @@ import { AddProductComponent } from './components/products-area/add-product/add-
     ProductModalComponent,
     MyCartComponent,
     AddProductComponent,
+    AddCategoryComponent,
+    AdminMenuComponent,
+    CartPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +65,8 @@ import { AddProductComponent } from './components/products-area/add-product/add-
     FormsModule,
     NoopAnimationsModule,
     MatDialogModule,
-    MobxAngularModule
+    MobxAngularModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [LayoutComponent]
