@@ -5,10 +5,11 @@ import logic from "../05-bll/cart-products-logic";
 const router = express.Router();
 
 // Route for getting all :
-router.get("/",async (request: Request, response: Response, next: NextFunction) => {
+router.get("/:cartId",async (request: Request, response: Response, next: NextFunction) => {
     try{
-       const cartProd = await logic.getAllCartProducts();
-       response.json(cartProd);
+        const cartId = request.params.cartId;
+        const cartProd = await logic.getAllCartProducts(cartId);
+        response.json(cartProd);
     }
     catch(err: any) {
         next(err);
@@ -28,10 +29,10 @@ router.get("/",async (request: Request, response: Response, next: NextFunction) 
 // Route for adding a :
 router.post("/",async (request: Request, response: Response, next: NextFunction) => {
     try{
-        const prodId = request.body.productId;
-        console.log(prodId)
+        // const prodId = request.body.productId;
+        // console.log(prodId)
         const cartProdToAdd = new CartProductModel(request.body);
-        const addedCartProd = await logic.addCartProduct(cartProdToAdd, prodId);
+        const addedCartProd = await logic.addCartProduct(cartProdToAdd);
         response.status(201).json(addedCartProd);
     }
     catch(err: any) {

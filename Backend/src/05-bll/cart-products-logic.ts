@@ -1,37 +1,36 @@
 import ClientError from '../03-models/client-error';
 import mongoose from 'mongoose';
 import { CartProductModel, ICartProductModel } from '../03-models/cart-product-model';
+import logicHelpers from "./cartProductsHelper";
 import productLogic from "./products-logic";
 
-async function getAllCartProducts(): Promise<ICartProductModel[]> {
-    return CartProductModel.find().populate("product").populate("shoppingCart");
+async function getAllCartProducts(cartId: string): Promise<ICartProductModel[]> {
+    return CartProductModel.find({"shoppingCartId": cartId}).populate("product").populate("shoppingCart");
 }
 
-// async function getOneCartProduct(_id: string): Promise<ICartProductModel> {
-//     // Validate _id:
-//     if (!mongoose.isValidObjectId(_id)) throw new ClientError(404, `_id ${_id} is invalid`);
-
-//     const cartProd = await CartProductModel.findById(_id).populate("product").populate("shoppingCart").exec();
-
-//     // Validate cart existence:
-//     if(!cartProd) throw new ClientError(404, "Cart Product not found");
-
-//     return cartProd;
-// }
-
-async function addCartProduct(cartProd: ICartProductModel, prodId: string): Promise<ICartProductModel> {
+async function addCartProduct(cartProduct: ICartProductModel): Promise<ICartProductModel> {
     // Getting the price of the prod:
-    const ogProductPrice = (await productLogic.getOneProduct(prodId)).price;
-
+    const productPrice = (await productLogic.getOneProduct(cartProduct.productId.toString())).price;
     // Setting total price for cart prod
-    cartProd.totalPrice = cartProd.quantity * ogProductPrice;
-
-    // Validate cart:
-    const errors = cartProd.validateSync();
+    cartProduct.totalPrice = cartProduct.quantity * productPrice;
+    // Validate:
+    const errors = cartProduct.validateSync();
     if(errors) throw new ClientError(400, errors.message);
-
-    // Save:
-    const addedCartProd = cartProd.save();
+    // Get all cart products:
+    const cartProducts = await getAllCartProducts(cartProduct.shoppingCartId.toString());
+    // Check if product already in cart:
+    const isInCart = logicHelpers.checkIfProductIdAlreadyInCart(cartProducts, cartProduct);
+    // If in cart, get the existing product:
+    if(isInCart) {
+        const existingProduct = cartProducts.find(product => product.productId.toString() === cartProduct.productId.toString());
+        // If so, increase quantity:
+        logicHelpers.increaseCartProductQuantity(existingProduct, cartProduct);
+        // update Cart Product:
+        const updatedProduct = await updateCartProduct(existingProduct);
+        return updatedProduct
+    }
+    // If not, add to db ad new cart product:
+    const addedCartProd = cartProduct.save();
     return addedCartProd;
 }
 
