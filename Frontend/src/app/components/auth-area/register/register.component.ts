@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthState } from 'src/app/mobx/auth-state';
+import { CartModel } from 'src/app/models/cart.model';
 import { CityModel } from 'src/app/models/city.model';
 import { UserModel } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { CartsService } from 'src/app/services/carts.service';
 import { CitiesService } from 'src/app/services/cities.service';
-import { NotifyService } from 'src/app/services/notify.service';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +23,9 @@ export class RegisterComponent implements OnInit {
   // Used to populate the city select box:
   public cities: CityModel[];
 
-  constructor(private authService: AuthService, private router: Router, private notify: NotifyService, private citiesService: CitiesService) { }
+  constructor(private authService: AuthService, private authState: AuthState, private router: Router, 
+    private notifications: NotificationsService, private citiesService: CitiesService,
+    private cartsService: CartsService) { }
 
   async ngOnInit(): Promise<void> {
     this.cities = await this.citiesService.getAllCities();
@@ -36,12 +41,18 @@ export class RegisterComponent implements OnInit {
 
   public async submit() {
     try {
+      // Register:
       await this.authService.register(this.user);
-      this.notify.success("Registration has been succeeded");
+      // Create user cart:
+      const userCart = new CartModel();
+      userCart.userId = this.authState.user._id;
+      await this.cartsService.createNewUserCart(userCart);
+      
+      this.notifications.success("Registration has been succeeded. \n A cart has been created for you");
       this.router.navigateByUrl("/home");
     }
     catch(err: any) {
-      this.notify.error(err);
+      this.notifications.error(err);
     }
   }
 

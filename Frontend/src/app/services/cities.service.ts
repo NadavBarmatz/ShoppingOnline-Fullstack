@@ -9,13 +9,18 @@ import { CityModel } from '../models/city.model';
 })
 export class CitiesService {
 
-  private urls = environment.urls;
+  private cityUrl = environment.urls.cities
 
   constructor(private http: HttpClient) { }
 
   public async getAllCities(): Promise<CityModel[]> {
-    const cities = await firstValueFrom(this.http.get<CityModel[]>(this.urls.cities));
+    const cities = await firstValueFrom(this.http.get<CityModel[]>(this.cityUrl));
     return cities;
   }
+
+  public async addCity(city: CityModel): Promise<CityModel> {
+    const addedCity = await firstValueFrom(this.http.post<CityModel>(this.cityUrl, city));
+    return addedCity;
+  } 
 
 }

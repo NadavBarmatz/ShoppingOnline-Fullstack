@@ -2,14 +2,14 @@ div {
     height: 100%;
     position: relative;
     display: grid;
-    grid-template: "nav" 8%
-                    "header" 65%
+    grid-template: "nav" 0.5fr
+                    "header" 5fr
                     "main"
-                    "footer" 8% ;
+                    "footer" 0.5fr;
 }
 
 nav {
-    /* grid-area: nav; */
+    grid-area: "nav";
     position: sticky;
     top: 0;
     z-index: 100;
@@ -17,15 +17,15 @@ nav {
 }
 
 header {
-    grid-area: header;
+    grid-area: "header";
 }
 
 main {
-    grid-area: main;
+    grid-area: "main";
 }
 
 footer {
-    grid-area: footer;
+    grid-area: "footer";
     background-color: var(--clr400);
 }
 

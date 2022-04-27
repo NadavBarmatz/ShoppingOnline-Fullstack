@@ -1,15 +1,9 @@
 <div>
-    
-    <ng-container *ngIf="!authState.isLoggedIn">
-        <span>Hello Guest | </span>
-        <a routerLink="/login">Login</a>
-        <span> | </span>
-        <a routerLink="/register">Register</a>
-    </ng-container>
-    
-    <ng-container *ngIf="authState.isLoggedIn">
-        <span>Hello {{authState.fullName}} | </span>
-        <a routerLink="/logout">Logout</a>
-    </ng-container>
-
+    <p *ngIf="!authState.isLoggedIn">
+        <span>Hello Guest |  <a routerLink="/login">Login</a> | <a routerLink="/register">Register</a></span>
+    </p>
+    <p *ngIf="authState.isLoggedIn">
+        <span>Hello {{authState.fullName}} |  <a routerLink="/logout">Logout</a></span>
+    </p>
+    <p *ngIf="authState.isLoggedIn">{{cartState.productTotalCount}} products in your cart</p>
 </div>

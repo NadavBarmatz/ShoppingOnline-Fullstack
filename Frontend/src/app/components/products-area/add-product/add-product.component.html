@@ -1,0 +1,17 @@
+<div>
+    <form (ngSubmit)="addProduct()">
+
+        <label>Product Name: </label>
+        <input type="text" name="productName" [(ngModel)]="product.productName">
+        
+        <label>Category: </label>
+        <select name="categoryId" [(ngModel)]="product.categoryId">
+            <option *ngFor="let cat of categories" [value]="cat._id">{{cat.name}}</option>
+        </select>
+        
+        <label>Price: </label>
+        <input type="number" step="0.01" name="price" [(ngModel)]="product.price">
+
+        <button>Add Product</button>
+    </form>
+</div>

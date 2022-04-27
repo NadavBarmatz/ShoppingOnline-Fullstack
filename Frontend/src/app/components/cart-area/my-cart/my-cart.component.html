@@ -1,0 +1,31 @@
+<div class="cart" *mobxAutorun>
+    <span (click)="handleCartDisplay()">🙌</span>
+    <h2>My Cart</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Single Price</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of cartState.getCartProducts">
+                <td>{{product.product.productName}}</td>
+                <td>{{product.product.price | currency}}</td>
+                <td>{{product.quantity}}</td>
+                <td>{{product.totalPrice | currency}}</td>
+                <td><button (click)="deleteProductFromCart(product._id)">❌</button></td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>-</td>
+                <td>{{cartState.productTotalCount}}</td>
+                <td>{{cartState.getTotalPrice | currency}}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

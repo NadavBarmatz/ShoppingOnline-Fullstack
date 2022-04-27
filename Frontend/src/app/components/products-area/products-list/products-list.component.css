@@ -1,0 +1,60 @@
+div {
+    position: relative;
+    padding: 2% 0;
+}
+
+div > div {
+    transition: all 0.5s ease-in-out;
+}
+
+div > div > main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0% 0% 5%;
+    gap: 3%;
+}
+
+.cart-tab {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 8vh;
+    aspect-ratio: 0.8;
+    background-color: var(--clr800);
+    border-radius: 0 25% 25% 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.45s ease-in-out;
+}
+
+.cart-tab:hover {
+    aspect-ratio: 1;
+}
+
+.cart-tab > img {
+    width: 50%;
+}
+
+.hide {
+    display: none;
+}
+
+.side-cart {
+    width: 35%;
+    
+    position: absolute;
+    top: 10%;
+    padding: 20px;
+    background-color: var(--clr200);
+    border: 2px solid var(--clr400);
+    box-shadow: 3px 3px 6px 3px var(--clr800);
+    transform: translateX(-110%);
+    transition: all 0.5s ease-in-out;
+}
+
+
+.show-cart {
+    transform: translateX(0);
+}

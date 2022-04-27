@@ -1,0 +1,17 @@
+<div>
+    <h2>Categories</h2>
+    <div>
+        <a *ngFor="let category of categoriesNamesForImages" routerLink="shop/{{category.toLowerCase()}}">
+            <div class="inner-div">
+                <img src="../../../../assets/images/categories-icons/{{category.toLowerCase()}}.png" alt="">
+                <p>{{category}}</p>
+            </div>
+        </a>
+        <a routerLink="shop/all-products">
+            <div class="inner-div">
+                <!-- <img src="../../../../assets/images/categories-icons/{{category.toLowerCase()}}.png" alt=""> -->
+                <p>ALL PRODUCTS</p>
+            </div>
+        </a>
+    </div>
+</div>

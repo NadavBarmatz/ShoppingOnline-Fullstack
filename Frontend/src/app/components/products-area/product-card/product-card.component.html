@@ -1,13 +1,13 @@
 <div class="card">
-    <div class="image">
-        <img src="src/ss" alt="">
+    <div class="image" mat-button (click)="openDialog()">
+            <img src="src/ss" alt="">
     </div>
     <div class="description">
         <h3>{{product.productName}}</h3>
         <h3>{{product.price | currency}}</h3>
     </div>
     <div class="add-quantity">
-        <input type="number" step="1" [defaultValue]="1" [(ngModel)]="quantity">
+        <input type="number" step="1" min="1" [defaultValue]="1" [(ngModel)]="quantity">
         <button (click)="addToCart()">ADD TO CART</button>
     </div>
 </div>

@@ -3,53 +3,62 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutComponent } from './components/layout-area/layout/layout.component';
-import { HeaderComponent } from './components/layout-area/header/header.component';
 import { NavbarComponent } from './components/layout-area/navbar/navbar.component';
-import { FooterComponent } from './components/layout-area/footer/footer.component';
-import { LogoComponent } from './components/shared-area/logo/logo.component';
 import { NavLinksComponent } from './components/layout-area/navbar/nav-links/nav-links.component';
-import { CategoriesComponent } from './components/home-area/categories/categories.component';
+import { HeaderComponent } from './components/layout-area/header/header.component';
+import { FooterComponent } from './components/layout-area/footer/footer.component';
+import { LogoComponent } from './components/layout-area/logo/logo.component';
+import { HttpClientModule } from "@angular/common/http"
+import { FormsModule } from "@angular/forms";
+import { LoginComponent } from './components/auth-area/login/login.component';
+import { RegisterComponent } from './components/auth-area/register/register.component';
+import { LogoutComponent } from './components/auth-area/logout/logout.component';
+import { AuthMenuComponent } from './components/auth-area/auth-menu/auth-menu.component';
 import { HomeComponent } from './components/home-area/home/home.component';
+import { CategoriesFilterComponent } from './components/shared-area/categories-filter/categories-filter.component';
 import { BestSellersComponent } from './components/home-area/best-sellers/best-sellers.component';
 import { DiscountComponent } from './components/home-area/discount/discount.component';
 import { AboutUsComponent } from './components/home-area/about-us/about-us.component';
-import { AllProductsComponent } from './components/shop-area/all-products/all-products.component';
-import { ProductDetailComponent } from './components/shop-area/product-detail/product-detail.component';
-
-import {HttpClientModule} from "@angular/common/http"
-import {FormsModule} from "@angular/forms";
-import { ProductCardComponent } from './components/shop-area/product-card/product-card.component';
-import { AuthMenuComponent } from './components/auth-area/auth-menu/auth-menu.component';
-import { LogoutComponent } from './components/auth-area/logout/logout.component';
-import { LoginComponent } from './components/auth-area/login/login.component';
-import { RegisterComponent } from './components/auth-area/register/register.component';
+import { ProductsListComponent } from './components/products-area/products-list/products-list.component';
+import { ProductCardComponent } from './components/products-area/product-card/product-card.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ProductModalComponent } from './components/products-area/product-modal/product-modal.component';
+import { MyCartComponent } from './components/cart-area/my-cart/my-cart.component';
+import { MobxAngularModule } from "mobx-angular";
+import { AddProductComponent } from './components/products-area/add-product/add-product.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
-    HeaderComponent,
     NavbarComponent,
+    NavLinksComponent,
+    HeaderComponent,
     FooterComponent,
     LogoComponent,
-    NavLinksComponent,
-    CategoriesComponent,
+    LoginComponent,
+    RegisterComponent,
+    LogoutComponent,
+    AuthMenuComponent,
     HomeComponent,
+    CategoriesFilterComponent,
     BestSellersComponent,
     DiscountComponent,
     AboutUsComponent,
-    AllProductsComponent,
-    ProductDetailComponent,
+    ProductsListComponent,
     ProductCardComponent,
-    AuthMenuComponent,
-    LogoutComponent,
-    LoginComponent,
-    RegisterComponent,
+    ProductModalComponent,
+    MyCartComponent,
+    AddProductComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NoopAnimationsModule,
+    MatDialogModule,
+    MobxAngularModule
   ],
   providers: [],
   bootstrap: [LayoutComponent]
