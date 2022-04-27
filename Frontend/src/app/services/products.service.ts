@@ -25,6 +25,11 @@ export class ProductsService {
     return products; 
   }
 
+  public async getOneProduct(productId: string): Promise<ProductModel> {
+    const product = await firstValueFrom(this.http.get<ProductModel>(this.urls.products + productId));
+    return product;
+  }
+
   public async addProduct(product: ProductModel): Promise<ProductModel> {
     // Add To DB
     const addedProduct = await firstValueFrom(this.http.post<ProductModel>(this.urls.products, product));
@@ -49,8 +54,7 @@ export class ProductsService {
   }
 
   public filterProducts(keyWord: string): ProductModel[] {
-    const filteredProducts = this.productsState.products.filter(product => product.category.name.toLocaleLowerCase() === keyWord.toLocaleLowerCase());
-    console.log("filteredProducts", filteredProducts)
+    const filteredProducts = this.productsState.products.filter(product => product.category?.name.toLocaleLowerCase() === keyWord.toLocaleLowerCase());
     return filteredProducts; 
   }
 }

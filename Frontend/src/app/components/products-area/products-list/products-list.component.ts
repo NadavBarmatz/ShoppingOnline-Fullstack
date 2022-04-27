@@ -20,7 +20,7 @@ export class ProductsListComponent implements OnInit {
   public isCartShown: boolean = false;
 
   constructor(private productsState: ProductsState, private productsService: ProductsService, 
-    private notifications: NotificationsService, private cartsService: CartsService, private route: ActivatedRoute) { }
+    private notifications: NotificationsService, private cartsService: CartsService, private activatedRoute: ActivatedRoute) { }
 
   async ngOnInit() {
     try{
@@ -36,7 +36,7 @@ export class ProductsListComponent implements OnInit {
         this.products = this.productsState.products;
       }
       // Subscribe to route params for filtering products:
-      this.route.paramMap.subscribe((params: ParamMap) => {
+      this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
         this.filterKeyWord = params.get("keyWord");
         if(this.filterKeyWord != null) {
           this.products = this.productsService.filterProducts(this.filterKeyWord)
