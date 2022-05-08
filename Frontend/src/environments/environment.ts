@@ -13,6 +13,7 @@ export const environment = {
     categories: mainPath + "categories/",
     cities: mainPath + "cities/",
     products: mainPath + "products/",
+    productsImages: mainPath + "products/images/",
     productsByCategory: mainPath + "products/by-category/",
     carts: mainPath + "carts/",
     cartsByUser: mainPath + "carts/by-user/",

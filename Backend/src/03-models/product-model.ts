@@ -1,3 +1,4 @@
+import { UploadedFile } from "express-fileupload";
 import { Document, Schema, model } from "mongoose";
 import { CategoryModel } from "./category-model";
 
@@ -6,6 +7,7 @@ export interface IProductModel extends Document {
     categoryId: Schema.Types.ObjectId;
     price: number;
     imageName: string;
+    image: UploadedFile;
 };
 
 const ProductSchema = new Schema({
@@ -24,11 +26,19 @@ const ProductSchema = new Schema({
         type: Number,
         required: [true, "Price is required"],
         min: [0.5, "price can't be less then 0"],
+    },
+    imageName: {
+        type: String
+    },
+    image: {
+        type: Object,
+        required: [true, "Image is required"]
     }
 }, {
     versionKey: false,
     id: false,
-    toJSON: {virtuals: true}
+    toJSON: {virtuals: true},
+    validateBeforeSave: false
 });
 
 ProductSchema.virtual("category", {

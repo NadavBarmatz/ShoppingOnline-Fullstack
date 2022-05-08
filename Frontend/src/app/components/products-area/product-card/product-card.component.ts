@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ProductModalComponent} from "../product-modal/product-modal.component"
 import { CartProductModel } from 'src/app/models/cart-product.model';
 import { CartsService } from 'src/app/services/carts.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-card',
@@ -17,6 +18,8 @@ export class ProductCardComponent {
   @Input()
   public product: ProductModel;
   public quantity: number = 1;
+
+  public imagesUrl = environment.urls.productsImages;
 
   constructor(private notifications: NotificationsService, private cartState: CartState, public dialog: MatDialog,
     private cartsService: CartsService) { }

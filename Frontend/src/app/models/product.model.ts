@@ -6,4 +6,5 @@ export class ProductModel {
    public categoryId: string;
    public price: number;
    public category: CategoryModel;
+   public imageName: string;
 }

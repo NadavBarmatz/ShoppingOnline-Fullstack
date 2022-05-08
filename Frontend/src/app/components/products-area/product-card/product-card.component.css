@@ -1,15 +1,12 @@
 .card {
-    padding: 8%;
+    padding: 3%;
     background-color: var(--clr200);
     border-radius: 20px;
-}
-
-.image {
-    height: 80%;
+    width: 50%;
 }
 
 img {
-    width: 100%;
+    width: 60%;
     aspect-ratio: 1;
 }
 

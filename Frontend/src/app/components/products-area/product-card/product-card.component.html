@@ -1,6 +1,6 @@
 <div class="card">
     <div class="image" mat-button (click)="openDialog()">
-            <img src="src/ss" alt="">
+            <img [src]="imagesUrl + product.imageName" alt="">
     </div>
     <div class="description">
         <h3>{{product.productName}}</h3>

@@ -1,5 +1,7 @@
 import ClientError from '../03-models/client-error';
 import mongoose from 'mongoose';
+import { v4 as uuid } from 'uuid';
+import safeDelete from '../01-utils/safe-delete';
 import { IProductModel, ProductModel } from '../03-models/product-model';
 
 async function getAllProducts(): Promise<IProductModel[]> {
@@ -35,8 +37,20 @@ async function addProduct(product: IProductModel): Promise<IProductModel> {
     const errors = product.validateSync();
     if(errors) throw new ClientError(400, errors.message);
 
+    // 1.  take original extension:
+    const extension = product.image.name.substring(product.image.name.lastIndexOf("."));
+    // 2. create uuid file name:
+    product.imageName = uuid() + extension;
+    // 3. save to disk:
+    await product.image.mv("./src/00-DB/Images/" + product.imageName);
+    // 4. delete image b4 sending back to front:
+    product["image"] = undefined;
+    
     // Save:
-    const addedProduct = product.save();
+    const addedProduct = await product.save();
+    // console.log(product.imageName)
+    // console.log("---------------------------------")
+    console.log(addedProduct.imageName)
     return addedProduct;
 }
 
@@ -45,11 +59,30 @@ async function updateProduct(product: IProductModel): Promise<IProductModel> {
     const errors = product.validateSync();
     if(errors) throw new ClientError(404, errors.message);
 
+    // 0. get product prom DB for the imageName use
+    const productToUpdate = await getOneProduct(product._id);
+    // Validate if product exist in DB:
+    if(!productToUpdate) throw new ClientError(404, "Product is not found");
+
+    // 1. set image name:
+    product.imageName = productToUpdate.imageName;
+    // 2. if we have an image to update:
+    if(product.image) {
+        // 3. delete prev image from DB:
+        safeDelete("./src/00-DB/Images/" + product.imageName);
+        // 4. take original extension:
+        const extension = product.image.name.substring(product.image.name.lastIndexOf("."));
+        // 5. create uuid file name:
+        product.imageName = uuid() + extension;
+        // 6. save to disk:
+        product.image.mv("./src/00-DB/Images/" + product.imageName);
+        // 7. delete image b4 sending back to front:
+        product["image"] = undefined;
+
+    }
+
     // update:
     const updatedProduct = await ProductModel.findByIdAndUpdate(product._id, product, {returnOriginal: false}).exec();
-
-    // Validate if product exist in DB:
-    if(!updatedProduct) throw new ClientError(404, "Product is not found");
 
     return updatedProduct;
 }
@@ -57,6 +90,13 @@ async function updateProduct(product: IProductModel): Promise<IProductModel> {
 async function deleteProduct(_id: string) {
     // Validate _id:
     if(!mongoose.isValidObjectId(_id)) throw new ClientError(404, `_id ${_id} is not valid`);
+
+    // 0. get product prom DB for the imageName use
+    const productToDelete = await getOneProduct(_id);
+    // Validate if product exist in DB:
+    if(!productToDelete) throw new ClientError(404, "Product is not found");
+    // delete image from db:
+    safeDelete("./src/00-DB/Images/" + productToDelete.imageName)
 
     // Delete:
     const deletedProduct = await ProductModel.findByIdAndDelete(_id);
