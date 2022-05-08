@@ -19,6 +19,9 @@ async function getOneOrder(_id: string): Promise<IOrderModel> {
 }
 
 async function addOrder(order: IOrderModel): Promise<IOrderModel> {
+
+    order.creationDate = new Date().toDateString();
+
     // Validate cart:
     const errors = order.validateSync();
     if(errors) throw new ClientError(400, errors.message);

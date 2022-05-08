@@ -21,8 +21,6 @@ import { AboutUsComponent } from './components/home-area/about-us/about-us.compo
 import { ProductsListComponent } from './components/products-area/products-list/products-list.component';
 import { ProductCardComponent } from './components/products-area/product-card/product-card.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatIconModule} from '@angular/material/icon';
 import { ProductModalComponent } from './components/products-area/product-modal/product-modal.component';
 import { MyCartComponent } from './components/cart-area/my-cart/my-cart.component';
 import { MobxAngularModule } from "mobx-angular";
@@ -32,6 +30,14 @@ import { AdminMenuComponent } from './components/admin-area/admin-menu/admin-men
 import { CartPageComponent } from './components/cart-area/cart-page/cart-page.component';
 import { CheckRouteRenderFilterSysDirective } from './directives/check-route-render-filter-sys.directive';
 import { EditProductComponent } from './components/admin-area/edit-product/edit-product.component';
+import { CheckOutComponent } from './components/check-out-area/check-out/check-out.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { ValidationErrorHandlerComponent } from './components/shared-area/validation-error-handler/validation-error-handler.component';
+
 
 @NgModule({
   declarations: [
@@ -60,6 +66,8 @@ import { EditProductComponent } from './components/admin-area/edit-product/edit-
     CartPageComponent,
     CheckRouteRenderFilterSysDirective,
     EditProductComponent,
+    CheckOutComponent,
+    ValidationErrorHandlerComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +77,10 @@ import { EditProductComponent } from './components/admin-area/edit-product/edit-
     NoopAnimationsModule,
     MatDialogModule,
     MobxAngularModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [LayoutComponent]

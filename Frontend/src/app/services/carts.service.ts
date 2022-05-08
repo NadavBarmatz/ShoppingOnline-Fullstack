@@ -15,6 +15,7 @@ export class CartsService {
   private urls = {
     cartByUser: environment.urls.cartsByUser,
     cartProducts: environment.urls.cartProducts,
+    cartProductsByCart: environment.urls.cartProductsByCart,
     allCarts: environment.urls.carts
   }
 
@@ -25,10 +26,10 @@ export class CartsService {
     const user = this.authState.user;
     if(!user) return;
     let cartFromDB = await this.getUserCart(user._id);
-    if(!cartFromDB) {
+       if(!cartFromDB) {
       cartFromDB = new CartModel();
       cartFromDB.userId = this.authState.user._id;
-      await this.createNewUserCart(cartFromDB);
+      cartFromDB = await this.createNewUserCart(cartFromDB);
     }    
     await this.getCartProducts(cartFromDB._id);
   }
@@ -51,7 +52,7 @@ export class CartsService {
 
   public async getCartProducts(cartId: string): Promise<CartProductModel[]> {
     // Get From DB
-    const cartProducts = await firstValueFrom(this.http.get<CartProductModel[]>(this.urls.cartProducts + cartId));
+    const cartProducts = await firstValueFrom(this.http.get<CartProductModel[]>(this.urls.cartProductsByCart + cartId));
     // Save To MobX
     this.cartState.saveCartProducts(cartProducts);
     return cartProducts;
@@ -64,6 +65,14 @@ export class CartsService {
     const cartProducts = await this.getCartProducts(cartProduct.shoppingCartId);
     this.cartState.saveCartProducts(cartProducts)
     return addedCartProduct;
+  }
+
+  public async updateProductInCart(cartProduct: CartProductModel): Promise<void> {
+    const idToUpdate = cartProduct._id;
+    await firstValueFrom(this.http.put<CartProductModel>(this.urls.cartProducts + idToUpdate, cartProduct));
+    // get all cart products to update mobx correctly:
+    const cartProducts = await this.getCartProducts(cartProduct.shoppingCartId);
+    this.cartState.saveCartProducts(cartProducts)
   }
 
   public async DeleteCart(cartId: string): Promise<void> {

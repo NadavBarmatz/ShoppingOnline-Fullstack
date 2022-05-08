@@ -28,7 +28,7 @@ export class AuthService {
   // Login
   public async login(credentials: CredentialsModel): Promise<string> {
     const token = await firstValueFrom(this.http.post<string>(this.urls.login, credentials));
-    this.authState.register(token);
+    this.authState.login(token);
     return token;
   }
 

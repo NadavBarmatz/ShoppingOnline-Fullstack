@@ -1,4 +1,6 @@
+import { CheckOutComponent } from './../../check-out-area/check-out/check-out.component';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cart-page',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  public openCheckoutDialog() {
+    const dialogRef = this.dialog.open(CheckOutComponent)
   }
 
 }

@@ -5,7 +5,7 @@ import logic from "../05-bll/cart-products-logic";
 const router = express.Router();
 
 // Route for getting all :
-router.get("/:cartId",async (request: Request, response: Response, next: NextFunction) => {
+router.get("/by-cart/:cartId",async (request: Request, response: Response, next: NextFunction) => {
     try{
         const cartId = request.params.cartId;
         const cartProd = await logic.getAllCartProducts(cartId);

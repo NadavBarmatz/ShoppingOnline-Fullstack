@@ -30,6 +30,7 @@ export class LoginComponent {
       this.router.navigateByUrl("/home");
     }
     catch(err: any) {
+      console.log(err)
       this.notifications.error(err);
     }
   }

@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { CartState } from 'src/app/mobx/cart-state';
+import { CartProductModel } from 'src/app/models/cart-product.model';
 import { CartsService } from 'src/app/services/carts.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
 
@@ -18,8 +19,25 @@ export class MyCartComponent {
 
   constructor(public cartState: CartState, private cartsService: CartsService, private notifications: NotificationsService) { }
 
-  public deleteProductFromCart(cartProductId: string) {
-    this.cartsService.deleteCartProduct(cartProductId);
+  public async deleteProductFromCart(cartProductId: string) {
+    try{
+      this.cartsService.deleteCartProduct(cartProductId);
+    }
+    catch(err: any) {
+      this.notifications.error(err);
+    }
+  }
+
+  public async handleQuantityChange(cartProduct: CartProductModel, target: any) {
+    try{
+      console.log(cartProduct, target.value);
+      cartProduct.quantity = +target.value;
+      cartProduct.totalPrice = cartProduct.quantity * cartProduct.product.price;
+      await this.cartsService.updateProductInCart(cartProduct)
+    }
+    catch(err: any) {
+      this.notifications.error(err);
+    }
   }
 
   public handleCartDisplay() {

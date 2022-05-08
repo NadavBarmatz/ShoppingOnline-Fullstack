@@ -1,0 +1,31 @@
+<form (ngSubmit)="checkOut()" #checkoutForm="ngForm">
+    <p>Total Cart: {{cartState.getTotalPrice | currency}}</p>
+
+    <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <mat-select name="cityId" [(ngModel)]="order.cityId" #cityBox="ngModel" required>
+          <mat-option *ngFor="let city of cities" [value]="city._id">{{city.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <!-- <span *ngIf="cityBox.errors?.['required'] && cityBox.touched && cityBox.dirty"></span> -->
+
+    <mat-form-field appearance="outline">
+        <mat-label>Street</mat-label>
+        <input matInput type="text" name="street" [(ngModel)]="order.street" #streetBox="ngModel" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Shipping Date</mat-label>
+        <input matInput type="date" name="deliveryDate" [(ngModel)]="order.deliveryDate" #shippingDateBox="ngModel" required />
+    </mat-form-field>
+
+    <label>Payments:</label>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Credit Card:</mat-label>
+        <input matInput type="number" minlength="4" name="fourLastDigits" [(ngModel)]="order.fourLastDigits" #creditCartBox="ngModel" required />
+    </mat-form-field>
+    <!-- <span *ngIf="creditCartBox.errors?.['minlength'] && creditCartBox.touched && creditCartBox.dirty">Field is required</span> -->
+
+    <button [disabled]="checkoutForm.invalid">Order</button>
+</form>

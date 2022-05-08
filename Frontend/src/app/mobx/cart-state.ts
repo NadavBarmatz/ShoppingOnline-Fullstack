@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { action, computed, configure, makeAutoObservable, observable, toJS } from 'mobx';
 import { CartProductModel } from '../models/cart-product.model';
 import { CartModel } from '../models/cart.model';
-import { ProductModel } from '../models/product.model';
 
 configure({useProxies: "never"})
 
@@ -38,10 +37,6 @@ export class CartState {
   @action
   public deleteCart() {
     this.cart = null;
-  }
-
-  @action
-  public deleteCartProducts() {
     this.cartProducts = [];
   }
 

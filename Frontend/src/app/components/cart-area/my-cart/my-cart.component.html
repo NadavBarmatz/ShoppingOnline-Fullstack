@@ -15,7 +15,11 @@
             <tr *ngFor="let product of cartState.getCartProducts">
                 <td>{{product.product.productName}}</td>
                 <td>{{product.product.price | currency}}</td>
-                <td>{{product.quantity}}</td>
+                <td>
+                    <mat-form-field appearance="outline">
+                        <input matInput (change)="handleQuantityChange(product, $event.target)" type="number" min="1" step="1" [defaultValue]="product.quantity">
+                    </mat-form-field>
+                </td>
                 <td>{{product.totalPrice | currency}}</td>
                 <td><button (click)="deleteProductFromCart(product._id)">❌</button></td>
             </tr>

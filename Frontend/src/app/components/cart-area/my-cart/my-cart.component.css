@@ -19,6 +19,11 @@ tbody > tr:last-child {
     color: var(--clr800);
 }
 
+td input {
+    text-align: right;
+    /* width: 25%; */
+}
+
 p {
     text-align: right;
 }

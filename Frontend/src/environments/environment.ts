@@ -17,6 +17,7 @@ export const environment = {
     carts: mainPath + "carts/",
     cartsByUser: mainPath + "carts/by-user/",
     cartProducts: mainPath + "cart-products/",
+    cartProductsByCart: mainPath + "cart-products/by-cart/",
     orders: mainPath + "orders/",
   }
 };

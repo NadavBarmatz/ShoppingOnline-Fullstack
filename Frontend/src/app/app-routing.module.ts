@@ -13,6 +13,7 @@ import { AddCategoryComponent } from './components/admin-area/add-category/add-c
 import { CartPageComponent } from './components/cart-area/cart-page/cart-page.component';
 import { CategoriesFilterComponent } from './components/categories-area/categories-filter/categories-filter.component';
 import { EditProductComponent } from './components/admin-area/edit-product/edit-product.component';
+import { CheckOutComponent } from "./components/check-out-area/check-out/check-out.component";
 
 const routes: Routes = [
 
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: "shop/all-products", canActivate: [UserGuard], component: ProductsListComponent },
   { path: "shop/:keyWord", canActivate: [UserGuard], component: ProductsListComponent},
   { path: "my-cart", canActivate: [UserGuard], component: CartPageComponent },
+  { path: "check-out", canActivate: [UserGuard], component: CheckOutComponent },
 
   // Fallbacks routes:
   { path: "", pathMatch: "full", redirectTo: "home" },
