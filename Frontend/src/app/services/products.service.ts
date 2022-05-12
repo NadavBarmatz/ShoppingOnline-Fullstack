@@ -31,16 +31,28 @@ export class ProductsService {
   }
 
   public async addProduct(product: ProductModel): Promise<ProductModel> {
+    // Handle FormData for images:
+    const myFormData = new FormData();
+    myFormData.append("productName", product.productName);
+    myFormData.append("categoryId", product.categoryId);
+    myFormData.append("price", product.price.toString());
+    myFormData.append("image", product.image);
     // Add To DB
-    const addedProduct = await firstValueFrom(this.http.post<ProductModel>(this.urls.products, product));
+    const addedProduct = await firstValueFrom(this.http.post<ProductModel>(this.urls.products, myFormData));
     // Update MobX
     this.productsState.addProduct(addedProduct);
     return addedProduct;
   }
 
   public async updateProduct(product: ProductModel): Promise<ProductModel> {
+    // Handle FormData for images:
+    const myFormData = new FormData();
+    myFormData.append("productName", product.productName);
+    myFormData.append("categoryId", product.categoryId);
+    myFormData.append("price", product.price.toString());
+    myFormData.append("image", product.image);
     // Update DB
-    const updatedProduct = await firstValueFrom(this.http.put<ProductModel>(this.urls.products + product._id, product));
+    const updatedProduct = await firstValueFrom(this.http.put<ProductModel>(this.urls.products + product._id, myFormData));
     // Update MobX
     this.productsState.updateProduct(updatedProduct);
     return updatedProduct;

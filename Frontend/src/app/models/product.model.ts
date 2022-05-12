@@ -7,4 +7,6 @@ export class ProductModel {
    public price: number;
    public category: CategoryModel;
    public imageName: string;
+   public image: File;
+
 }

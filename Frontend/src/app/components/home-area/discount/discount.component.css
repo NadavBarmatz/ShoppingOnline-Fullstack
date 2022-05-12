@@ -1,11 +1,12 @@
 .container {
-    height: 50%;
     width: 90%;
+    height: 70%;
     display: flex;
     align-items: center;
     margin: auto;
     background-color: var(--clr200);
     border-radius: 10vh;
+    transform: translateY(23%);
 }
 
 .image {
@@ -42,5 +43,6 @@ input::placeholder {
 }
 
 button {
-    padding: 20px;
+    padding: 10px 20px;
+    border-radius: 1vh;
 }

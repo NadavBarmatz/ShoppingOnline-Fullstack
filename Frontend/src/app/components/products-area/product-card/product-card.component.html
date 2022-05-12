@@ -1,6 +1,13 @@
 <div class="card">
+    <span (click)="deleteProduct(product._id)" *ngIf="authState.isAdmin">
+        <img src="../../../../assets/images/general/close.png" alt="">
+    </span>
+    <span (click)="editProduct(product._id)" *ngIf="authState.isAdmin">
+        <img src="../../../../assets/images/general/edit.png" alt="">
+    </span>
+
     <div class="image" mat-button (click)="openDialog()">
-            <img [src]="imagesUrl + product.imageName" alt="">
+        <img [src]="imagesUrl + product.imageName" alt="">
     </div>
     <div class="description">
         <h3>{{product.productName}}</h3>

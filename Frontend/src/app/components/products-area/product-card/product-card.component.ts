@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthState } from 'src/app/mobx/auth-state';
 import { NotificationsService } from './../../../services/notifications.service';
 import { Component, Input } from '@angular/core';
 import { ProductModel } from 'src/app/models/product.model';
@@ -7,6 +9,7 @@ import {ProductModalComponent} from "../product-modal/product-modal.component"
 import { CartProductModel } from 'src/app/models/cart-product.model';
 import { CartsService } from 'src/app/services/carts.service';
 import { environment } from 'src/environments/environment';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-product-card',
@@ -22,7 +25,8 @@ export class ProductCardComponent {
   public imagesUrl = environment.urls.productsImages;
 
   constructor(private notifications: NotificationsService, private cartState: CartState, public dialog: MatDialog,
-    private cartsService: CartsService) { }
+    private cartsService: CartsService, public authState: AuthState, private productsService: ProductsService,
+    private router: Router) { }
 
   public async addToCart() {
     try{
@@ -40,5 +44,18 @@ export class ProductCardComponent {
 
   openDialog() {
     this.dialog.open(ProductModalComponent);
+  }
+
+  editProduct(productId: string){
+    this.router.navigateByUrl("edit-product/" + productId)
+  }
+
+  async deleteProduct(productId: string) {
+    try{
+      await this.productsService.deleteProduct(productId)
+    }
+    catch(err: any) {
+      this.notifications.error(err);
+    }
   }
 }

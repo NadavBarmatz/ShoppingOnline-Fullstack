@@ -1,0 +1,11 @@
+div {
+    display: grid;
+}
+
+div > section:nth-child(1) {
+    padding-top: 7%;
+}
+
+div > section {
+    padding: 2% 0;
+}

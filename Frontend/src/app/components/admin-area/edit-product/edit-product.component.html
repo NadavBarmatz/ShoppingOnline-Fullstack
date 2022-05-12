@@ -1,18 +1,29 @@
 <div>
     <h3>Edit Product</h3>    
-    <form (ngSubmit)="editProduct()">
+    <form #addProductForm="ngForm" (ngSubmit)="editProduct()">
 
-        <label>Product Name: </label>
-        <input type="text" name="productName" [(ngModel)]="product.productName">
+        <mat-form-field appearance="outline">
+            <mat-label>Product Name:</mat-label>
+            <input matInput type="text" name="productName" [(ngModel)]="product.productName" required>
+        </mat-form-field>
         
-        <label>Category: </label>
-        <select name="categoryId" [(ngModel)]="product.categoryId">
-            <option *ngFor="let cat of categories" [value]="cat._id">{{cat.name}}</option>
-        </select>
-        
-        <label>Price: </label>
-        <input type="number" step="0.01" name="price" [(ngModel)]="product.price">
-
-        <button>Add Product</button>
+        <mat-form-field appearance="outline">
+            <mat-label>Category: </mat-label>
+            <mat-select name="categoryId" [(ngModel)]="product.categoryId" required>
+                <mat-option *ngFor="let cat of categories" [value]="cat._id">{{cat.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+            <mat-label>Price: </mat-label>
+            <input matInput type="number" step="0.01" name="price" [(ngModel)]="product.price" required>
+        </mat-form-field>
+            
+        <mat-form-field appearance="outline">
+            <mat-label>Image: </mat-label>
+            <ngx-mat-file-input type="file" accept="image/*" name="image" [(ngModel)]="product.image"></ngx-mat-file-input>
+        </mat-form-field>
+       
+        <button [disabled]="addProductForm.invalid">Edit Product</button>
     </form>
 </div>

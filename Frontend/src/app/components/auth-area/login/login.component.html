@@ -1,17 +1,23 @@
 <div>
     <h2>Login</h2>
 
-    <form (ngSubmit)="login()">
+    <form #loginForm="ngForm" (ngSubmit)="login()">
 
         <div class="fields">
-            <label>Username: </label>
-            <input type="text" name="username" required [(ngModel)]="credentials.username">
-    
-            <label>Password: </label>
-            <input type="text" name="password" required [(ngModel)]="credentials.password">
+            <mat-form-field appearance="outline" >
+                <mat-label>Username: </mat-label>
+                <input matInput #username="ngModel" type="text" name="username" required minlength="4" [(ngModel)]="credentials.username">
+            </mat-form-field>
+            <app-validation-error-handler [fieldName]="username" minLength="4"></app-validation-error-handler>
+            
+            <mat-form-field appearance="outline" >
+                <mat-label>Password: </mat-label>
+                <input matInput #password="ngModel" type="password" name="password" required minlength="4" [(ngModel)]="credentials.password">
+            </mat-form-field>
+            <app-validation-error-handler [fieldName]="password" minLength="4"></app-validation-error-handler>
         </div>
     
-        <button>LOGIN</button>
+        <button [disabled]="loginForm.invalid">LOGIN</button>
 
     </form>
 </div>

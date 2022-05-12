@@ -17,9 +17,6 @@ export class NotificationsService {
   }
 
   private getMessage(err: any): string {
-
-      console.log(err);
-      
       if(typeof err === "string") return err;
 
       if(typeof err.error === "string") return err.error; // HttpClient string error

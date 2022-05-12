@@ -1,11 +1,8 @@
-<section>
-    <h2>Best Sellers</h2>
-    
-    <div class="boxes">
-        <div class="category-box" *ngFor="let cat of categories">
-            <h3>{{cat}}</h3>
-            <p>our premium</p> <p>{{cat.toLowerCase()}} collection</p>
-            <button>SEE MORE</button>
-        </div>
+<div class="boxes">
+    <div class="category-box" *ngFor="let cat of categories" (click)="redirect(cat.toLowerCase())">
+        <img [src]="'../../../../assets/images/best-sellers-section/' + cat.toLowerCase() + '.png'" alt="">
+        <h3>{{cat}}</h3>
+        <p>our premium</p> <p>{{cat.toLowerCase()}} collection</p>
+        <button>SEE MORE</button>
     </div>
-</section>    
+</div>

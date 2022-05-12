@@ -1,24 +1,36 @@
 <div>
     <h2>Register</h2>
 
-    <form (ngSubmit)="submit()">
+    <form #registerForm="ngForm" (ngSubmit)="submit()">
         
         <div class="step1" [ngClass]="{'step-no-show': step===2}">
             <div class="fields">
                 
                 <p>Step 1</p>
+                
+                <mat-form-field appearance="outline" >
+                    <mat-label>First Name: </mat-label>
+                    <input #firstName="ngModel" matInput type="text" name="firstName" [(ngModel)]="user.firstName" required >
+                </mat-form-field>
+                <app-validation-error-handler [fieldName]="firstName"></app-validation-error-handler>
         
-                <label>First Name: </label>
-                <input type="text" name="firstName" [(ngModel)]="user.firstName" >
-        
-                <label>Last Name: </label>
-                <input type="text" name="lastName" [(ngModel)]="user.lastName" >
-        
-                <label>Username: </label>
-                <input type="text" name="username" [(ngModel)]="user.username" >
-        
-                <label>Password: </label>
-                <input type="text" name="password" [(ngModel)]="user.password" >
+                <mat-form-field appearance="outline" >
+                    <mat-label>Last Name: </mat-label>
+                    <input #lastName="ngModel" matInput type="text" name="lastName" [(ngModel)]="user.lastName" required >
+                </mat-form-field>
+                <app-validation-error-handler [fieldName]="lastName"></app-validation-error-handler>
+                
+                <mat-form-field appearance="outline" >
+                    <mat-label>Username: </mat-label>
+                    <input #username="ngModel" matInput type="text" name="username" [(ngModel)]="user.username" required minlength="3" >
+                </mat-form-field>
+                <app-validation-error-handler [fieldName]="username" minLength="3"></app-validation-error-handler>
+                
+                <mat-form-field appearance="outline" >
+                    <mat-label>Password: </mat-label>
+                    <input #password="ngModel" matInput type="password" name="password" [(ngModel)]="user.password" required minlength="4" >
+                </mat-form-field>
+                <app-validation-error-handler [fieldName]="password" minLength="4"></app-validation-error-handler>
         
             </div>
             <button type="button" (click)="nextStep()">NEXT</button>
@@ -28,21 +40,30 @@
             <div class="fields">
                 
                 <p>Step 2</p>
-        
-                <label>City: </label>
-                <select name="city" [(ngModel)]="user.cityId">
-                    <option *ngFor="let city of cities" [value]="city._id">{{city.name}}</option>
-                </select>
-        
-                <label>Street: </label>
-                <input type="text" name="street" [(ngModel)]="user.street" >
-        
-                <label>Email: </label>
-                <input type="text" name="email" [(ngModel)]="user.email" >
+                <mat-form-field appearance="outline">
+                    <mat-label>City: </mat-label>
+                    <mat-select #city="ngModel" name="city" [(ngModel)]="user.cityId" required >
+                        <mat-option *ngFor="let city of cities" [value]="city._id">{{city.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <app-validation-error-handler [fieldName]="city" minLength="4"></app-validation-error-handler>
+                
+                <mat-form-field appearance="outline" >
+                    <mat-label>Street: </mat-label>
+                    <input #street="ngModel" matInput type="text" name="street" [(ngModel)]="user.street" required >
+                </mat-form-field>
+                <app-validation-error-handler [fieldName]="street" minLength="4"></app-validation-error-handler>
+                
+                <mat-form-field appearance="outline" >
+                    <mat-label>Email: </mat-label>
+                    <input #email="ngModel" matInput type="text" name="email" [(ngModel)]="user.email" required >
+                </mat-form-field>
+                <app-validation-error-handler [fieldName]="email" minLength="4"></app-validation-error-handler>
         
             </div>
             <button type="button" (click)="previous()">BACK</button>
-            <button>REGISTER</button>
+            
+            <button type="submit" [disabled]="registerForm.invalid">REGISTER</button>
         </div>
 
     </form>

@@ -1,9 +1,9 @@
-section {
+.container {
     height: 100%;
     display: flex;
 }
 
-section > div {
+.container > div {
     width: 40%;
     margin: auto;
 }
@@ -18,6 +18,12 @@ h1 {
 
 p {
     color: var(--clr800);
+}
+
+p > span {
+    color: var(--clr400);
+    text-decoration: underline;
+    font-size: 1.3em;
 }
 
 img {

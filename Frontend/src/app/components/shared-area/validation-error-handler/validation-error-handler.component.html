@@ -1,0 +1,5 @@
+<span *ngIf="fieldName.errors?.['required'] && fieldName.touched && fieldName.pristine">Missing {{fieldName.name}}</span>
+<span *ngIf="fieldName.errors?.['min'] && fieldName.touched && fieldName.dirty">{{fieldName.name}} can't be negative</span>
+<span *ngIf="fieldName.errors?.['max'] && fieldName.touched && fieldName.dirty">{{fieldName.name}} can't exceed {{max}}</span>
+<span *ngIf="fieldName.errors?.['minlength'] && fieldName.touched && fieldName.dirty">{{fieldName.name}} must be minimum {{minLength}} chars</span>
+<span *ngIf="fieldName.errors?.['maxlength'] && fieldName.touched && fieldName.dirty">{{fieldName.name}} must be max {{maxLength}} chars</span>

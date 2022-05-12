@@ -43,13 +43,24 @@ button {
     color: var(--clr000);
     border: none;
     border-radius: 10vh;
-    padding: 10px;
+    padding: 15px;
     cursor: pointer;
 }
 
 button:hover {
     background-color: var(--clr200);
     color: var(--clr800);
+}
+
+button:disabled,
+button:hover:disabled {
+    background-color: hsla(0, 0%, 38%, 0.581);
+    color: white;
+    cursor: not-allowed;
+}
+
+mat-form-field {
+    width: 100%;
 }
 
 /* 

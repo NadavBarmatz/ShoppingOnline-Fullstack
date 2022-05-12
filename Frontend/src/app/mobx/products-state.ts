@@ -40,4 +40,9 @@ export class ProductsState {
         return this.products.length !== 0;
     }
 
+    @computed 
+    public get productsCount() : number {
+        return this.products.length
+    }
+
 }

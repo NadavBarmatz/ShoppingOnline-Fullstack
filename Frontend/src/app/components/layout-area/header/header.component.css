@@ -8,23 +8,24 @@ div {
 }
 
 h1 {
-    font-size: 8em;
+    font-size: 10em;
     text-align: left;
-    width: fit-content;
-    margin: 5% auto;
+    width: min-content;
+    line-height: 0.8em;
+    margin: 6% auto;
     color: var(--clr000);
 }
 
 img {
-    width: 30%;
+    width: 20%;
     position: absolute;
-    top: 20%;
-    right: 15%;
+    top: 8vh;
+    right: 24vw;
 }
 
 button {
     position: absolute;
-    bottom: 0;
+    bottom: -10%;
     transform: translateX(-50%);  
-    font-size: 1.5em;
+    font-size: 1.2em;
 }

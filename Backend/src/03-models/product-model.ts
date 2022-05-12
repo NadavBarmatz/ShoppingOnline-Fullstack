@@ -25,7 +25,7 @@ const ProductSchema = new Schema({
     price: {
         type: Number,
         required: [true, "Price is required"],
-        min: [0.5, "price can't be less then 0"],
+        min: [0.01, "price can't be less then 0.01"],
     },
     imageName: {
         type: String
@@ -38,7 +38,7 @@ const ProductSchema = new Schema({
     versionKey: false,
     id: false,
     toJSON: {virtuals: true},
-    validateBeforeSave: false
+    // validateBeforeSave: false
 });
 
 ProductSchema.virtual("category", {

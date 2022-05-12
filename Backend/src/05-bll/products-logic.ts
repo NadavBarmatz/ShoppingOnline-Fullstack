@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import { v4 as uuid } from 'uuid';
 import safeDelete from '../01-utils/safe-delete';
 import { IProductModel, ProductModel } from '../03-models/product-model';
+import path from 'path';
+import fs from "fs"
 
 async function getAllProducts(): Promise<IProductModel[]> {
     return ProductModel.find().populate("category");
@@ -46,21 +48,22 @@ async function addProduct(product: IProductModel): Promise<IProductModel> {
     // 4. delete image b4 sending back to front:
     product["image"] = undefined;
     
+    // Force save auto validation to ignore the deleted image property:
+    product.$ignore("image")
     // Save:
     const addedProduct = await product.save();
-    // console.log(product.imageName)
-    // console.log("---------------------------------")
     console.log(addedProduct.imageName)
     return addedProduct;
 }
 
 async function updateProduct(product: IProductModel): Promise<IProductModel> {
     // Validate product:
-    const errors = product.validateSync();
+    const errors = product.validateSync(["productName", "categoryId", "price"]);
     if(errors) throw new ClientError(404, errors.message);
-
-    // 0. get product prom DB for the imageName use
+    
+    // Get product from DB for image usage:
     const productToUpdate = await getOneProduct(product._id);
+    
     // Validate if product exist in DB:
     if(!productToUpdate) throw new ClientError(404, "Product is not found");
 

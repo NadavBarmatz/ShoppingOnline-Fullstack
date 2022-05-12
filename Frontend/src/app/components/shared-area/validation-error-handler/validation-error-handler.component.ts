@@ -1,19 +1,26 @@
-import { ValidationFieldsModel } from './validation-attributes.model';
 import { Component, OnInit, Input } from '@angular/core';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-validation-error-handler',
   templateUrl: './validation-error-handler.component.html',
   styleUrls: ['./validation-error-handler.component.css']
 })
-export class ValidationErrorHandlerComponent implements OnInit {
+export class ValidationErrorHandlerComponent {
 
   @Input()
-  public validationFields: ValidationFieldsModel[];
+  public fieldName: NgModel;
 
-  constructor() { }
+  @Input() 
+  public minLength: string;
 
-  ngOnInit(): void {
-  }
+  @Input() 
+  public maxLength: string;
+
+  @Input() 
+  public min: string;
+
+  @Input() 
+  public max: string;
 
 }

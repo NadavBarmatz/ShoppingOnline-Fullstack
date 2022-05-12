@@ -31,13 +31,14 @@ import { CartPageComponent } from './components/cart-area/cart-page/cart-page.co
 import { CheckRouteRenderFilterSysDirective } from './directives/check-route-render-filter-sys.directive';
 import { EditProductComponent } from './components/admin-area/edit-product/edit-product.component';
 import { CheckOutComponent } from './components/check-out-area/check-out/check-out.component';
+import { ValidationErrorHandlerComponent } from './components/shared-area/validation-error-handler/validation-error-handler.component';
+
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { ValidationErrorHandlerComponent } from './components/shared-area/validation-error-handler/validation-error-handler.component';
-
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 @NgModule({
   declarations: [
@@ -75,12 +76,14 @@ import { ValidationErrorHandlerComponent } from './components/shared-area/valida
     HttpClientModule,
     FormsModule,
     NoopAnimationsModule,
-    MatDialogModule,
     MobxAngularModule,
+    
+    MatDialogModule,
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgxMatFileInputModule
   ],
   providers: [],
   bootstrap: [LayoutComponent]

@@ -1,12 +1,42 @@
 .card {
-    padding: 3%;
+    padding: 10px;
+    margin-top: 3%;
+    position: relative;
     background-color: var(--clr200);
     border-radius: 20px;
-    width: 50%;
+    width: 300px;
+    z-index: 1;
+}
+
+span {
+    position: absolute;
+    top: 10px;
+    cursor: pointer;
+}
+
+span > img {
+    width: 20px;
+}
+
+span:hover {
+    opacity: 0.5;
+}
+
+span:nth-child(1) {
+    right: 10px;
+}
+
+span:nth-child(2) {
+    left: 10px;
+}
+
+.image {
+    width: 80%;
+    margin: auto;
 }
 
 img {
-    width: 60%;
+    width: 100%;
     aspect-ratio: 1;
 }
 
@@ -17,13 +47,20 @@ img {
 
 h3 {
     font-family: var(--font400);
+    margin-bottom: 5%;
 }
 
 .add-quantity {
-    display: flex;
-    justify-content: space-between;
+    position: relative;
+}
+
+.add-quantity > button { 
+    
 }
 
 input {
-    width: 50%;
+    width: 20%;
+    position: absolute;
+    right: 0;
+    transform: translateY(55%);
 }

@@ -20,3 +20,7 @@ button {
     margin-left: 50%;
     transform: translateX(-50%);
 }
+
+mat-form-field {
+    width: 100%;
+}

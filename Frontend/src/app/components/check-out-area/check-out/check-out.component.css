@@ -5,10 +5,3 @@ form {
 mat-form-field {
     width: 100%;
 }
-
-form > button:disabled,
-form > button:hover:disabled {
-    background-color: hsla(0, 0%, 38%, 0.581);
-    color: white;
-    cursor: not-allowed;
-}

@@ -19,7 +19,8 @@ export class EditProductComponent implements OnInit {
   public categories: CategoryModel[];
 
   constructor(private categoriesService: CategoriesService, private notifications: NotificationsService,
-              private productsService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router, private productsState: ProductsState) { }
+              private productsService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router, 
+              private productsState: ProductsState) { }
 
   async ngOnInit() {
     try{
@@ -36,6 +37,7 @@ export class EditProductComponent implements OnInit {
   }
 
   public async editProduct() {
+    // console.log(this.product.image)
     try {
       await this.productsService.updateProduct(this.product);
       this.notifications.success("A new product has been update successfully");

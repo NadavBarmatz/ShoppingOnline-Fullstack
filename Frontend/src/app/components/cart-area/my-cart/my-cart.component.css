@@ -1,4 +1,12 @@
-.cart > span:nth-child(1) {
+img {
+    width: 15px;
+}
+
+img:hover {
+    opacity: 0.5;
+}
+
+.cart > img:nth-child(1) {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -27,3 +35,5 @@ td input {
 p {
     text-align: right;
 }
+
+
