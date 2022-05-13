@@ -39,7 +39,6 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
-import { TestDirective } from './test.directive';
 
 @NgModule({
   declarations: [
@@ -70,7 +69,6 @@ import { TestDirective } from './test.directive';
     EditProductComponent,
     CheckOutComponent,
     ValidationErrorHandlerComponent,
-    TestDirective,
   ],
   imports: [
     BrowserModule,

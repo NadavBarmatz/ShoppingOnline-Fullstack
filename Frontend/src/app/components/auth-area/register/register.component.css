@@ -2,7 +2,7 @@ div {
     padding: 5%;
 }
 
-form {
+div > form {
     width: 35%;
     margin: auto;
     border: 1px solid var(--clr200);
