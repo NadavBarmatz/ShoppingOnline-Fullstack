@@ -4,25 +4,29 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Product Name:</mat-label>
-            <input matInput type="text" name="productName" [(ngModel)]="product.productName" required>
+            <input #productName="ngModel" matInput type="text" name="productName" [(ngModel)]="product.productName" required minlength="2">
         </mat-form-field>
+        <app-validation-error-handler [fieldName]="productName" minLength="2"></app-validation-error-handler>
         
         <mat-form-field appearance="outline">
             <mat-label>Category: </mat-label>
-            <mat-select name="categoryId" [(ngModel)]="product.categoryId" required>
+            <mat-select #categoryId="ngModel" name="categoryId" [(ngModel)]="product.categoryId" required>
                 <mat-option *ngFor="let cat of categories" [value]="cat._id">{{cat.name}}</mat-option>
             </mat-select>
         </mat-form-field>
-    
+        <app-validation-error-handler [fieldName]="categoryId"></app-validation-error-handler>
+        
         <mat-form-field appearance="outline">
             <mat-label>Price: </mat-label>
-            <input matInput type="number" step="0.01" name="price" [(ngModel)]="product.price" required>
+            <input #price="ngModel" matInput type="number" step="0.01" min="0.01" name="price" [(ngModel)]="product.price" required>
         </mat-form-field>
-            
+        <app-validation-error-handler [fieldName]="price" min="0.01"></app-validation-error-handler>
+        
         <mat-form-field appearance="outline">
             <mat-label>Image: </mat-label>
-            <ngx-mat-file-input type="file" accept="image/*" name="image" [(ngModel)]="product.image" [required]="true"></ngx-mat-file-input>
+            <ngx-mat-file-input #image="ngModel" type="file" accept="image/*" name="image" [(ngModel)]="product.image" [required]="true"></ngx-mat-file-input>
         </mat-form-field>
+        <app-validation-error-handler [fieldName]="image"></app-validation-error-handler>
        
         <button [disabled]="addProductForm.invalid">Add Product</button>
     </form>

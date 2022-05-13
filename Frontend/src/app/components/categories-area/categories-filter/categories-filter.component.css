@@ -26,6 +26,7 @@ a {
 
 .inner-div:hover {
     border: 5px solid var(--clr800);
+    font-size: small;
 }
 
 img {

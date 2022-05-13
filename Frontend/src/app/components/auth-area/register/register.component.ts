@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CartsService } from 'src/app/services/carts.service';
 import { CitiesService } from 'src/app/services/cities.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
+import { EmailRegex } from 'src/app/models/regular-expressions';
 
 @Component({
   selector: 'app-register',
@@ -22,6 +23,8 @@ export class RegisterComponent implements OnInit {
   public step: number = 1;
   // Used to populate the city select box:
   public cities: CityModel[];
+
+  public emailRegex = EmailRegex;
 
   constructor(private authService: AuthService, private authState: AuthState, private router: Router, 
     private notifications: NotificationsService, private citiesService: CitiesService,

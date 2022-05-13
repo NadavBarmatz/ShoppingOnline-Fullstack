@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ProductsState } from 'src/app/mobx/products-state';
 import { ProductModel } from 'src/app/models/product.model';
@@ -11,7 +11,13 @@ import { ProductsService } from 'src/app/services/products.service';
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit, AfterViewChecked {
+
+  @ViewChild('slideToMain') element: ElementRef;
+  ngAfterViewChecked(){
+    this.element.nativeElement.scrollIntoView({behavior: 'smooth'});
+    // console.log(this.main)
+  }
 
   public products: ProductModel[];
 
@@ -42,6 +48,8 @@ export class ProductsListComponent implements OnInit {
           this.products = this.productsService.filterProducts(this.filterKeyWord)
         }
       })
+
+      
     }
     catch(err: any) {
       this.notifications.error(err);

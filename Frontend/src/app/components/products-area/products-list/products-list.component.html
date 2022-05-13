@@ -6,6 +6,7 @@
         <div class="side-cart" [ngClass]="{'show-cart' : isCartShown}">
             <app-my-cart [seeCart]="isCartShown" (isCartClicked)="cartClicked()"></app-my-cart>
         </div>
+        <div #slideToMain></div>
         <main>
             <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
         </main>

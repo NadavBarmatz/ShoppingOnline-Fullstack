@@ -31,20 +31,19 @@ const UserSchema = new Schema({
     username: {
         type: String,
         required: [true,"username is required"],
-        minlength: [2, "username must be min 2 chars"],
+        minlength: [3, "username must be min 2 chars"],
         maxlength: [15, "username must be max 15 chars"],
         trim: true
     },
     email: {
         type: String,
         required: [true, "email is required"],
-        match: [/^(.+)@(.+)$/, "invalid email structure"]
+        match: [/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, "invalid email structure"]
     },
     password: {
         type: String,
         required: [true,"password is required"],
         minlength: [4, "password must be min 4 digits"],
-        maxlength: [10, "password must be max 10 digits"],
     },
     role: {
         type: String
