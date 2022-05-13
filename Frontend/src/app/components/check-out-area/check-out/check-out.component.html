@@ -7,25 +7,27 @@
           <mat-option *ngFor="let city of cities" [value]="city._id">{{city.name}}</mat-option>
         </mat-select>
     </mat-form-field>
-    <!-- <span *ngIf="cityBox.errors?.['required'] && cityBox.touched && cityBox.dirty"></span> -->
-
+    <app-validation-error-handler [fieldName]="cityBox"></app-validation-error-handler>
+    
     <mat-form-field appearance="outline">
         <mat-label>Street</mat-label>
         <input matInput type="text" name="street" [(ngModel)]="order.street" #streetBox="ngModel" required />
     </mat-form-field>
-
+    <app-validation-error-handler [fieldName]="streetBox"></app-validation-error-handler>
+    
     <mat-form-field appearance="outline">
         <mat-label>Shipping Date</mat-label>
         <input matInput type="date" name="deliveryDate" [(ngModel)]="order.deliveryDate" #shippingDateBox="ngModel" required />
     </mat-form-field>
-
+    <app-validation-error-handler [fieldName]="shippingDateBox"></app-validation-error-handler>
+    
     <label>Payments:</label>
-
+    
     <mat-form-field appearance="outline">
         <mat-label>Credit Card:</mat-label>
         <input matInput type="number" minlength="4" name="fourLastDigits" [(ngModel)]="order.fourLastDigits" #creditCartBox="ngModel" required />
     </mat-form-field>
-    <!-- <span *ngIf="creditCartBox.errors?.['minlength'] && creditCartBox.touched && creditCartBox.dirty">Field is required</span> -->
-
+    <app-validation-error-handler [fieldName]="creditCartBox" minLength="4"></app-validation-error-handler>
+    
     <button [disabled]="checkoutForm.invalid">Order</button>
 </form>

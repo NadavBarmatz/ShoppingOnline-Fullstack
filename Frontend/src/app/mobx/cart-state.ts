@@ -45,7 +45,6 @@ export class CartState {
     const indexToDelete = this.cartProducts.findIndex(cartProduct => cartProduct._id === cartProductId);
     if(indexToDelete !== -1) {
       this.cartProducts.splice(indexToDelete, 1);
-      console.log(this.getCartProducts)
     }
   }
 

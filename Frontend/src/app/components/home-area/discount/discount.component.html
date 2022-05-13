@@ -9,9 +9,10 @@
             <p>Do you have an account already? write your email and get {{discountPercentage}}% off of your order</p>
         </div>
     
-        <div class="email-form">
-            <input type="text" placeholder="yourmail@mail.com">
-            <button>SEND</button>
-        </div>
+        <form #emailForm="ngForm" class="email-form">
+            <input #email="ngModel" type="text" placeholder="yourmail@mail.com" name="email" [(ngModel)]="discountEmail.to" required [pattern]="emailRegex">
+            <button [disabled]="emailForm.invalid" (click)="sendDiscount()">SEND</button>
+            <app-validation-error-handler [fieldName]="email" ></app-validation-error-handler>
+        </form>
     </div>
 </div>

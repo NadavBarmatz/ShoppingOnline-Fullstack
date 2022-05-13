@@ -15,7 +15,6 @@ export class AboutUsComponent implements OnInit {
 
   ngOnInit() {
       this.scrollService.toSlide.subscribe((data)=>{
-        console.log(data)
         if(data) {
           this.element.nativeElement.scrollIntoView({behavior: 'smooth'});
           this.scrollService.slideAction(false);

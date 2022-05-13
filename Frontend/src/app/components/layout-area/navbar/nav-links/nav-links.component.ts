@@ -14,7 +14,12 @@ export class NavLinksComponent {
   public toAboutUsSection() {
     if(this.router.url !== '/home'){
       this.router.navigateByUrl("/home")
+      setTimeout(()=>{
+        this.scrollService.slideAction(true);
+      }, 1)
     }
-    this.scrollService.slideAction(true);
+    else{
+      this.scrollService.slideAction(true);
+    }
   }
 }

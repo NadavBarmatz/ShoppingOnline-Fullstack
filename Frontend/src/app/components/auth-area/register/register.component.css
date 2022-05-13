@@ -5,7 +5,6 @@ div {
 div > form {
     width: 35%;
     margin: auto;
-    border: 1px solid var(--clr200);
 }
 
 .fields {
@@ -14,10 +13,6 @@ div > form {
 
 label, input, select {
     width: 100%;
-}
-
-input {
-    margin-bottom: 10px;
 }
 
 .step-no-show {

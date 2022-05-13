@@ -2,10 +2,12 @@
     width: 60%;
     margin: auto;
     padding: 8%;
+    position: relative;
 }
 
-.action-buttons {
-    display: flex;
-    justify-content: space-between;
-    padding: 5% 0;
+button {
+    position: absolute;
+    right: 0;
+    bottom: 50px;
+    transform: translateX(-100%);
 }

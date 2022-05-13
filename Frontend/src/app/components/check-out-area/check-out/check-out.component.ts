@@ -25,6 +25,8 @@ export class CheckOutComponent implements OnInit {
 
   async ngOnInit() {
     this.cities = await this.citiesService.getAllCities();
+    this.order.cityId = this.authState.user.cityId;
+    this.order.street = this.authState.user.street;
   }
 
   public async checkOut(): Promise<void> {

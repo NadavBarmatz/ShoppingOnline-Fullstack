@@ -28,4 +28,5 @@ button {
     bottom: -10%;
     transform: translateX(-50%);  
     font-size: 1.2em;
+    z-index: 100;
 }

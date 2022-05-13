@@ -20,6 +20,7 @@ export const environment = {
     cartProducts: mainPath + "cart-products/",
     cartProductsByCart: mainPath + "cart-products/by-cart/",
     orders: mainPath + "orders/",
+    emails: mainPath + 'emails/',
   }
 };
 
