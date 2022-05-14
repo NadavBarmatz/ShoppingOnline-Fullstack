@@ -1,9 +1,9 @@
 <div>
     <div>
-        <div #cartTab class="cart-tab" (click)="cartClicked()">
+        <div *ngIf="!screenSize.isSizeSmaller670()" #cartTab class="cart-tab" (click)="cartClicked()">
             <img src="../../../../assets/images/cart-related/shopping-cart.png">
         </div>
-        <div class="side-cart" [ngClass]="{'show-cart' : isCartShown}">
+        <div *ngIf="!screenSize.isSizeSmaller670()" class="side-cart" [ngClass]="{'show-cart' : isCartShown}">
             <app-my-cart [seeCart]="isCartShown" (isCartClicked)="cartClicked()"></app-my-cart>
         </div>
         <div #slideToMain></div>

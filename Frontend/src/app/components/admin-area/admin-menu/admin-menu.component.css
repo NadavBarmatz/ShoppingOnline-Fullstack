@@ -1,11 +1,11 @@
 .menu {
     position: absolute;
-    top: 5.9vh;
+    top: 100%;
     right: 0;
     height: 100vh;
     width: 300px;
     background-color: rgba(96, 96, 96, 0.2);
-    transform: translateX(105%);
+    transform: translateX(125%);
     transition: all 0.5s ease-in;
 }
 
@@ -16,4 +16,12 @@
 .links {
     padding: 5%;
     display: grid;
+}
+
+a {
+    text-decoration: underline;
+    color: var(--clr800);
+    /* font-size: 1.5rem; */
+    font-weight: bold;
+    padding: 1rem;
 }

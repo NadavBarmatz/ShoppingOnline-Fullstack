@@ -5,6 +5,7 @@ import { ProductModel } from 'src/app/models/product.model';
 import { CartsService } from 'src/app/services/carts.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { ProductsService } from 'src/app/services/products.service';
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
 
 @Component({
   selector: 'app-products-list',
@@ -20,19 +21,16 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
   }
 
   public products: ProductModel[];
-
   private filterKeyWord: string;
-
   public isCartShown: boolean = false;
 
-  constructor(private productsState: ProductsState, private productsService: ProductsService, 
+  constructor(public screenSize: ScreenSizeService,private productsState: ProductsState, private productsService: ProductsService, 
     private notifications: NotificationsService, private cartsService: CartsService, private activatedRoute: ActivatedRoute) { }
 
   async ngOnInit() {
     try{
       // Get user cart from DB. if not exist, create one:
       await this.cartsService.validateCartExistenceAndCreateIfNoExist();
-
       if(!this.productsState.isProductsInMobx) {
         // get products from db:
         this.products = await this.productsService.getAllProducts();
@@ -47,9 +45,7 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
         if(this.filterKeyWord != null) {
           this.products = this.productsService.filterProducts(this.filterKeyWord)
         }
-      })
-
-      
+      })      
     }
     catch(err: any) {
       this.notifications.error(err);

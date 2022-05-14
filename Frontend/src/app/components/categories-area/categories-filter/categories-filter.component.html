@@ -1,6 +1,6 @@
 <div>
     <h2>Categories</h2>
-    <div *ngIf="getScreenWidth > 1400">
+    <div *ngIf="!screenSize.isSizeSmaller1400()">
         <a *ngFor="let category of categoriesNamesForImages" routerLink="shop/{{category.toLowerCase()}}">
             <div class="inner-div">
                 <img src="../../../../assets/images/categories-icons/{{category.toLowerCase()}}.png" alt="">
@@ -9,7 +9,7 @@
         </a>
 
     </div>
-    <carousel *ngIf="getScreenWidth < 1400" [height]="100" [width]="getScreenWidth" [cellsToShow]="numberOfDisplayedItemsInCarousel" class="centered">
+    <carousel *ngIf="screenSize.isSizeSmaller1400()" [height]="100" [width]="getScreenWidth-100" [cellsToShow]="numberOfDisplayedItemsInCarousel" class="centered">
         <div *ngFor="let category of categoriesNamesForImages" class="carousel-cell">
                 <a routerLink="shop/{{category.toLowerCase()}}">
                 <img src="../../../../assets/images/categories-icons/{{category.toLowerCase()}}.png" alt="">

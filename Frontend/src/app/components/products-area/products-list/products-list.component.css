@@ -28,6 +28,7 @@ div > div > main {
     align-items: center;
     cursor: pointer;
     transition: all 0.45s ease-in;
+    z-index: 100;
 }
 
 .hover-tab,
@@ -76,4 +77,10 @@ div > div > main {
 
 .show-cart {
     transform: translateX(0);
+}
+
+@media only screen and (max-width: 600px) {
+    .side-cart {
+        width: 100%;
+    }
 }

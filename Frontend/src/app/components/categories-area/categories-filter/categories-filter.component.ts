@@ -1,3 +1,4 @@
+import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { NotificationsService } from 'src/app/services/notifications.service';
@@ -16,19 +17,22 @@ export class CategoriesFilterComponent implements OnInit {
 
   // Used as properties of carousel lib:
   public getScreenWidth: any;
-  public numberOfDisplayedItemsInCarousel: number = 4;
+  public numberOfDisplayedItemsInCarousel: number = 5;
 
   constructor(private categoriesService: CategoriesService, private notifications: NotificationsService,
-    private categoriesState: CategoriesState) { }
+    private categoriesState: CategoriesState, public screenSize: ScreenSizeService) { }
 
   async ngOnInit() {
     try{
       // getting screen width to determine initial carousel properties:
       this.getScreenWidth = window.innerWidth;
       if(this.getScreenWidth > 1200) {
+        this.numberOfDisplayedItemsInCarousel = 5;
+      }
+      if(this.getScreenWidth <= 1200 && this.getScreenWidth > 700) {
         this.numberOfDisplayedItemsInCarousel = 4;
       }
-      if(this.getScreenWidth < 1200) {
+      if(this.getScreenWidth <= 700) {
         this.numberOfDisplayedItemsInCarousel = 3;
       }
       
@@ -50,9 +54,12 @@ export class CategoriesFilterComponent implements OnInit {
   onWindowResize() {
     this.getScreenWidth = window.innerWidth;
     if(this.getScreenWidth > 1200) {
+      this.numberOfDisplayedItemsInCarousel = 5;
+    }
+    if(this.getScreenWidth <= 1200 && this.getScreenWidth > 700) {
       this.numberOfDisplayedItemsInCarousel = 4;
     }
-    if(this.getScreenWidth < 1200) {
+    if(this.getScreenWidth <= 700) {
       this.numberOfDisplayedItemsInCarousel = 3;
     }
   }

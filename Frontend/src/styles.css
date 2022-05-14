@@ -25,7 +25,6 @@ html, body {
 body {
     text-align: center;
     font-family: var(--font400);
-    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -62,7 +61,3 @@ button:hover:disabled {
 mat-form-field {
     width: 100%;
 }
-
-/* 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */

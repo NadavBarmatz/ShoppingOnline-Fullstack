@@ -23,6 +23,11 @@ export class OrdersService {
     return orders;
   }
 
+  public async getOneOrder(_id: string): Promise<OrderModel> {
+    const order = await firstValueFrom(this.http.get<OrderModel>(this.ordersUrl + _id)); 
+    return order;
+  }
+
   public async createOrder(order: OrderModel): Promise<OrderModel> {
     const newOrder = await firstValueFrom(this.http.post<OrderModel>(this.ordersUrl, order)); 
     return newOrder;
