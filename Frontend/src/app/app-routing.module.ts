@@ -30,6 +30,7 @@ const routes: Routes = [
   // Site routes:
   { path: "home", component: HomeComponent},
   { path: "shop/all-products", canActivate: [UserGuard], component: ProductsListComponent },
+  { path: "shop/all products", canActivate: [UserGuard], component: ProductsListComponent },
   { path: "shop/:keyWord", canActivate: [UserGuard], component: ProductsListComponent},
   { path: "my-cart", canActivate: [UserGuard], component: CartPageComponent },
   { path: "check-out", canActivate: [UserGuard], component: CheckOutComponent },

@@ -1,8 +1,8 @@
+import { RegularNavbarComponent } from './components/layout-area/navbar/regular-navbar/regular-navbar.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { LayoutComponent } from './components/layout-area/layout/layout.component';
-import { NavbarComponent } from './components/layout-area/navbar/navbar.component';
 import { NavLinksComponent } from './components/layout-area/navbar/nav-links/nav-links.component';
 import { HeaderComponent } from './components/layout-area/header/header.component';
 import { FooterComponent } from './components/layout-area/footer/footer.component';
@@ -40,10 +40,13 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { MobileNavbarComponent } from './components/layout-area/navbar/mobile-navbar/mobile-navbar.component';
+
 @NgModule({
   declarations: [
     LayoutComponent,
-    NavbarComponent,
+    RegularNavbarComponent,
     NavLinksComponent,
     HeaderComponent,
     FooterComponent,
@@ -69,6 +72,7 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
     EditProductComponent,
     CheckOutComponent,
     ValidationErrorHandlerComponent,
+    MobileNavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +87,9 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
-    NgxMatFileInputModule
+    NgxMatFileInputModule,
+
+    IvyCarouselModule
   ],
   providers: [],
   bootstrap: [LayoutComponent]

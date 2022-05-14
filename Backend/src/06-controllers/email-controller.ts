@@ -4,7 +4,7 @@ import logic from "../05-bll/email-logic";
 
 const router = express.Router();
 
-router.post("/discount", async(request: Request, response: Response, next: NextFunction)=>{
+router.post("/", async(request: Request, response: Response, next: NextFunction)=>{
     try{
         const email = new EmailModel();
         email.subject = request.body.subject;

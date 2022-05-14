@@ -1,6 +1,6 @@
 <div>
     <div>
-        <div class="cart-tab" (click)="cartClicked()">
+        <div #cartTab class="cart-tab" (click)="cartClicked()">
             <img src="../../../../assets/images/cart-related/shopping-cart.png">
         </div>
         <div class="side-cart" [ngClass]="{'show-cart' : isCartShown}">
@@ -8,7 +8,7 @@
         </div>
         <div #slideToMain></div>
         <main>
-            <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+            <app-product-card (forceCartTabHoverEffect)="forceHover()" *ngFor="let product of products" [product]="product"></app-product-card>
         </main>
     </div>
 </div>

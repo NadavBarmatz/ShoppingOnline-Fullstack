@@ -38,3 +38,11 @@ p {
     color: var(--clr800);
     font-size: larger;
 }
+
+.centered {
+    margin: auto;
+}
+
+.carousel {
+    z-index: 1;
+}

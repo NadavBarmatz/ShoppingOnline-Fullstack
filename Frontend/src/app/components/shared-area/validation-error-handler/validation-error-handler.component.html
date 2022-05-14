@@ -4,3 +4,4 @@
 <span *ngIf="fieldName.errors?.['minlength'] && fieldName.touched && fieldName.dirty">{{fieldName.name}} must be minimum {{minLength}} chars</span>
 <span *ngIf="fieldName.errors?.['maxlength'] && fieldName.touched && fieldName.dirty">{{fieldName.name}} must be max {{maxLength}} chars</span>
 <span *ngIf="fieldName.errors?.['pattern'] && fieldName.touched && fieldName.dirty">{{fieldName.name == 'email' ? 'email must match example@example.example' : null}}</span>
+<span *ngIf="fieldName.errors?.['pattern'] && fieldName.touched && fieldName.dirty">{{fieldName.name == 'fourLastDigits' ? 'creditCard must contain only numbers' : null}}</span>

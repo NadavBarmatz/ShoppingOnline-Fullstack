@@ -9,15 +9,12 @@ import { EmailModel } from '../models/email.model';
 })
 export class EmailsService {
 
-  private urls = {
-    discountMail: environment.urls.emails + "discount", 
-  }
+  private emailUrl = environment.urls.emails; 
 
   constructor(private http: HttpClient) { }
 
-  async sendDiscountMail(email: EmailModel) {
-    email.subject = "SupermarCat - Discount Mail";
-    email.body = "Thank you for taking your time to check the discount feature";
-    await firstValueFrom(this.http.post(this.urls.discountMail, email));
+  async sendMail(email: EmailModel) {
+    await firstValueFrom(this.http.post(this.emailUrl, email));
   }
+
 }

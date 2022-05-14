@@ -1,0 +1,31 @@
+.mobile-navigator {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: var(--clr400);
+}
+
+.mobile-navigator > img {
+    width: 30px;
+    cursor: pointer;
+}
+
+.mobile-navigator > div {
+    width: 100%;
+    text-align: center;
+}
+
+.links {
+    width: 50%;
+}
+
+.close {
+    transform: translateY(-100%);
+    transition: all 250ms ease-in;
+}
+
+.open {
+    transform: translateY(0%);
+    transition: all 250ms ease-in;
+}

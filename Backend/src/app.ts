@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import config from "./01-utils/config";
@@ -15,6 +18,7 @@ import ordersController from "./06-controllers/orders-controller";
 import errorsHandler from "./02-middleware/errors-handler";
 import expressFileUpload from "express-fileupload";
 import ClientError from "./03-models/client-error";
+import { env } from "process";
 
 const server = express();
 

@@ -2,8 +2,10 @@
     <h2> Add Category</h2>
     <form (ngSubmit)="addCategory()">
 
-        <label>Category Name</label>
-        <input type="text" name="name" [(ngModel)]="category.name" required>
+        <mat-form-field appearance="outline">
+            <mat-label>Category Name</mat-label>
+            <input matInput type="text" name="name" [(ngModel)]="category.name" required>
+        </mat-form-field>
 
         <button>Add Category</button>
 

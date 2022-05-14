@@ -1,17 +1,20 @@
 <div>
     <h2>Categories</h2>
-    <div>
+    <div *ngIf="getScreenWidth > 1400">
         <a *ngFor="let category of categoriesNamesForImages" routerLink="shop/{{category.toLowerCase()}}">
             <div class="inner-div">
                 <img src="../../../../assets/images/categories-icons/{{category.toLowerCase()}}.png" alt="">
                 <p>{{category}}</p>
             </div>
         </a>
-        <a routerLink="shop/all-products">
-            <div class="inner-div">
-                <img src="../../../../assets/images/categories-icons/all products.png" alt="">
-                <p>All Products</p>
-            </div>
-        </a>
+
     </div>
+    <carousel *ngIf="getScreenWidth < 1400" [height]="100" [width]="getScreenWidth" [cellsToShow]="numberOfDisplayedItemsInCarousel" class="centered">
+        <div *ngFor="let category of categoriesNamesForImages" class="carousel-cell">
+                <a routerLink="shop/{{category.toLowerCase()}}">
+                <img src="../../../../assets/images/categories-icons/{{category.toLowerCase()}}.png" alt="">
+                <p>{{category}}</p>
+                </a>
+            </div>
+    </carousel>
 </div>

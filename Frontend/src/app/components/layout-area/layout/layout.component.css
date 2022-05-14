@@ -9,7 +9,7 @@ nav {
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     background-color: var(--clr400);
 }
 
@@ -19,6 +19,20 @@ main {
 
 footer {
     background-color: var(--clr400);
+}
+
+
+.mobile-navbar {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .mobile-navbar {
+        display: block;
+    }
+    .regular-navbar {
+        display: none;
+    }
 }
 
 

@@ -3,31 +3,31 @@
 
     <mat-form-field appearance="outline">
         <mat-label>City</mat-label>
-        <mat-select name="cityId" [(ngModel)]="order.cityId" #cityBox="ngModel" required>
+        <mat-select name="cityId" [(ngModel)]="order.cityId" #city="ngModel" required>
           <mat-option *ngFor="let city of cities" [value]="city._id">{{city.name}}</mat-option>
         </mat-select>
     </mat-form-field>
-    <app-validation-error-handler [fieldName]="cityBox"></app-validation-error-handler>
+    <app-validation-error-handler [fieldName]="city"></app-validation-error-handler>
     
     <mat-form-field appearance="outline">
         <mat-label>Street</mat-label>
-        <input matInput type="text" name="street" [(ngModel)]="order.street" #streetBox="ngModel" required />
+        <input matInput type="text" name="street" [(ngModel)]="order.street" #street="ngModel" required />
     </mat-form-field>
-    <app-validation-error-handler [fieldName]="streetBox"></app-validation-error-handler>
+    <app-validation-error-handler [fieldName]="street"></app-validation-error-handler>
     
     <mat-form-field appearance="outline">
         <mat-label>Shipping Date</mat-label>
-        <input matInput type="date" name="deliveryDate" [(ngModel)]="order.deliveryDate" #shippingDateBox="ngModel" required />
+        <input matInput type="date" name="deliveryDate" [min]="minDate" [(ngModel)]="order.deliveryDate" #shippingDate="ngModel" required />
     </mat-form-field>
-    <app-validation-error-handler [fieldName]="shippingDateBox"></app-validation-error-handler>
+    <app-validation-error-handler [fieldName]="shippingDate"></app-validation-error-handler>
     
     <label>Payments:</label>
     
     <mat-form-field appearance="outline">
         <mat-label>Credit Card:</mat-label>
-        <input matInput type="number" minlength="4" name="fourLastDigits" [(ngModel)]="order.fourLastDigits" #creditCartBox="ngModel" required />
+        <input matInput type="text" [pattern]="creditCardRegex" minlength="4" maxlength="4" name="fourLastDigits" [(ngModel)]="order.fourLastDigits" #creditCard="ngModel" required />
     </mat-form-field>
-    <app-validation-error-handler [fieldName]="creditCartBox" minLength="4"></app-validation-error-handler>
+    <app-validation-error-handler [fieldName]="creditCard" minLength="4" maxLength="4"></app-validation-error-handler>
     
     <button [disabled]="checkoutForm.invalid">Order</button>
 </form>

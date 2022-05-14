@@ -1,6 +1,8 @@
 div {
     display: flex;
+    width: inherit;
     justify-content: space-around;
+    margin: auto;
 }
 
 a {

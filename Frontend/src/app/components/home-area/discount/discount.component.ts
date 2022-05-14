@@ -19,7 +19,10 @@ export class DiscountComponent {
 
   public async sendDiscount() {
     try{
-      this.emailsServices.sendDiscountMail(this.discountEmail)
+      this.discountEmail.subject = "SupermarCat - Discount Mail";
+      this.discountEmail.body = "Thank you for taking your time to check the discount feature";
+      this.emailsServices.sendMail(this.discountEmail);
+      this.notifications.success("an email has ACTUALLY been sent to your ACTUAL email")
     }
     catch(err: any) {
       this.notifications.error(err);

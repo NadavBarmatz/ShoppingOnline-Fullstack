@@ -1,4 +1,4 @@
-import { Component, OnInit,  ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import { Component, OnInit,  ViewChild, ElementRef, AfterViewChecked, AfterViewInit, AfterContentChecked, HostListener } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ProductsState } from 'src/app/mobx/products-state';
 import { ProductModel } from 'src/app/models/product.model';
@@ -11,11 +11,11 @@ import { ProductsService } from 'src/app/services/products.service';
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit, AfterViewChecked {
+export class ProductsListComponent implements OnInit, AfterViewInit {
 
   @ViewChild('slideToMain') element: ElementRef;
-  ngAfterViewChecked(){
-    this.element.nativeElement.scrollIntoView({behavior: 'smooth'});
+  ngAfterViewInit(){
+    // this.element.nativeElement.scrollIntoView({behavior: 'smooth'});
     // console.log(this.main)
   }
 
@@ -58,6 +58,15 @@ export class ProductsListComponent implements OnInit, AfterViewChecked {
 
   public cartClicked() {
     this.isCartShown = !this.isCartShown;
+  }
+
+  
+  @ViewChild('cartTab') cartTab: ElementRef ;
+  public forceHover() {
+    this.cartTab.nativeElement.classList.add("hover-tab");
+    setTimeout(()=>{
+      this.cartTab.nativeElement.classList.remove("hover-tab");
+    }, 300)
   }
 
 }

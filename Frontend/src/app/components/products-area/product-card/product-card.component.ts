@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { AuthState } from 'src/app/mobx/auth-state';
 import { NotificationsService } from './../../../services/notifications.service';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductModel } from 'src/app/models/product.model';
 import { CartState } from 'src/app/mobx/cart-state';
 import {MatDialog} from '@angular/material/dialog';
@@ -17,6 +17,9 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent {
+
+  @Output()
+  public forceCartTabHoverEffect = new EventEmitter();
 
   @Input()
   public product: ProductModel;
@@ -36,6 +39,8 @@ export class ProductCardComponent {
       productToAdd.shoppingCartId = this.cartState.cart._id;
       await this.cartsService.addProductToCart(productToAdd);
       this.notifications.success("This product ha been added to your shopping cart");
+
+      this.forceCartTabHoverEffect.emit();
     }
     catch(err: any) {
       this.notifications.error(err);

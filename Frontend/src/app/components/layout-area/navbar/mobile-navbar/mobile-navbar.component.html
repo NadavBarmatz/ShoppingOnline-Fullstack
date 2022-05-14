@@ -1,0 +1,7 @@
+<div class="mobile-navigator">
+    <img (click)="openNavbar()" src="../../../../../assets/images/general/burgerMenu.png" alt="">
+    <div [class]="isNavbarOpen ? 'open': 'close'">
+        <app-nav-links class="links"></app-nav-links>
+        <app-auth-menu></app-auth-menu>
+    </div>
+</div>
