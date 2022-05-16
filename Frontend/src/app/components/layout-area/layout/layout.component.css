@@ -2,7 +2,7 @@ div {
     height: 100%;
     position: relative;
     display: grid;
-    grid-template-rows: 0.6fr 5fr min-content 0.5fr;
+    grid-template-rows: 0.6fr 5fr fit-content 0.6fr;
 }
 
 nav {
@@ -19,6 +19,7 @@ main {
 
 footer {
     background-color: var(--clr400);
+    height: 100%;
 }
 
 

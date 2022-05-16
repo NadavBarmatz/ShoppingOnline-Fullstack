@@ -36,3 +36,23 @@ button {
     left: 50%;
     transform: translateX(-50%);
 }
+
+@media only screen and (max-width: 600px) {
+    .boxes {
+        flex-direction: column;
+    }
+
+    .category-box {
+        width: 100%;
+        margin: 15% 0;
+    }
+
+    .category-box:nth-child(2) {
+        margin-top: 20%;
+    }
+
+    button {
+        font-size: 0.7em;
+        padding: 6%;
+    }
+}

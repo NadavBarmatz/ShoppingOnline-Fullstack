@@ -13,13 +13,18 @@ img:hover {
     cursor: pointer;
 }
 
+.cart {
+    width: 100%;
+    padding: 5% 0;
+
+}
+
 table {
     width: 100%;
 }
 
 td, th {
     border-bottom: 2px dashed var(--clr400);
-    padding: 18px;
 }
 
 tbody > tr:last-child {
@@ -29,6 +34,11 @@ tbody > tr:last-child {
 
 td input {
     text-align: right;
+}
+
+input {
+    width: 50%;
+    border-radius: 5px;
 }
 
 p {

@@ -1,13 +1,19 @@
 .container {
     width: 60%;
     margin: auto;
-    padding: 8%;
     position: relative;
 }
 
 button {
-    position: absolute;
-    right: 0;
-    bottom: 50px;
-    transform: translateX(-100%);
+    /* position: absolute; */
+    /* right: 0; */
+    /* transform: translateX(-100%); */
+}
+
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+
 }

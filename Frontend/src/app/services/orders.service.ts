@@ -7,6 +7,8 @@ import { EmailModel } from '../models/email.model';
 import { OrderModel } from '../models/order.model';
 import { CartsService } from './carts.service';
 import { EmailsService } from './emails.service';
+import { CartModel } from '../models/cart.model';
+import { AuthState } from '../mobx/auth-state';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +18,7 @@ export class OrdersService {
   private ordersUrl = environment.urls.orders;
 
   constructor(private http: HttpClient, private cartState: CartState, private cartsService: CartsService,
-    private emailsService: EmailsService ) { }
+    private emailsService: EmailsService, private authState: AuthState) { }
 
   public async getAllOrders(): Promise<OrderModel[]> {
     const orders = await firstValueFrom(this.http.get<OrderModel[]>(this.ordersUrl)); 
@@ -39,6 +41,9 @@ export class OrdersService {
     await this.createOrder(order);
     this.emailsService.sendMail(receiptEmail);
     await this.cartsService.DeleteCart(this.cartState.cart._id);
+    const newCart = new CartModel();
+    // newCart.userId = this.authState.user._id;
+    // await this.cartsService.createNewUserCart(newCart);
   }
 }
 

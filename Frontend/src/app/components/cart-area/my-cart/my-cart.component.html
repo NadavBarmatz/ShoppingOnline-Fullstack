@@ -16,9 +16,9 @@
                 <td>{{product.product.productName}}</td>
                 <td>{{product.product.price | currency}}</td>
                 <td>
-                    <mat-form-field appearance="outline">
-                        <input matInput (change)="handleQuantityChange(product, $event.target)" type="number" min="1" step="1" [defaultValue]="product.quantity">
-                    </mat-form-field>
+                    <!-- <mat-form-field appearance="outline"> -->
+                    <input (change)="handleQuantityChange(product, $event.target)" type="number" min="1" step="1" [defaultValue]="product.quantity">
+                    <!-- </mat-form-field> -->
                 </td>
                 <td>{{product.totalPrice | currency}}</td>
                 <td><img src="../../../../assets/images/general/close.png" (click)="deleteProductFromCart(product._id)"></td>

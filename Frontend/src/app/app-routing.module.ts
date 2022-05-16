@@ -2,16 +2,14 @@ import { UserGuard } from './services/user.guard';
 import { AdminGuard } from './services/admin.guard';
 import { ProductsListComponent } from './components/products-area/products-list/products-list.component';
 import { HomeComponent } from './components/home-area/home/home.component';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/auth-area/login/login.component';
 import { LogoutComponent } from './components/auth-area/logout/logout.component';
 import { RegisterComponent } from './components/auth-area/register/register.component';
 import { AddProductComponent } from './components/admin-area/add-product/add-product.component';
-import { MyCartComponent } from './components/cart-area/my-cart/my-cart.component';
 import { AddCategoryComponent } from './components/admin-area/add-category/add-category.component';
 import { CartPageComponent } from './components/cart-area/cart-page/cart-page.component';
-import { CategoriesFilterComponent } from './components/categories-area/categories-filter/categories-filter.component';
 import { EditProductComponent } from './components/admin-area/edit-product/edit-product.component';
 import { CheckOutComponent } from "./components/check-out-area/check-out/check-out.component";
 
@@ -26,6 +24,9 @@ const routes: Routes = [
   {path: "add-product", canActivate: [AdminGuard], component: AddProductComponent},
   {path: "edit-product/:productId", canActivate: [AdminGuard], component: EditProductComponent},
   {path: "add-category", canActivate: [AdminGuard], component: AddCategoryComponent},
+
+  // Lazy Loading of OrdersModule
+  {path: "orders", loadChildren: () => import('./components/orders-area/orders.module').then(m => m.OrdersModule)},
 
   // Site routes:
   { path: "home", component: HomeComponent},

@@ -1,0 +1,23 @@
+<div>
+    <h2>Orders Panel</h2>
+
+    <form #orderForm="ngForm" (ngSubmit)="getOneOrderById()">
+        <mat-form-field appearance="outline">
+            <mat-label>Order ID:</mat-label>
+            <input matInput type="text" name="orderId" [(ngModel)]="orderId" required>
+        </mat-form-field>
+
+        <button [disabled]="orderForm.invalid">Get Order</button>
+    </form>
+
+    <table *ngIf="requiredOrder">
+        <thead>
+
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{requiredOrder}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

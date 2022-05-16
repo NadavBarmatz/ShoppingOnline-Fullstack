@@ -4,7 +4,8 @@
     right: 0;
     height: 100vh;
     width: 300px;
-    background-color: rgba(96, 96, 96, 0.2);
+    background-color: hsla(108, 31%, 81%, 0.75);
+    background-blend-mode: multiply;
     transform: translateX(125%);
     transition: all 0.5s ease-in;
 }

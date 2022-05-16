@@ -7,7 +7,7 @@ import { NavLinksComponent } from './components/layout-area/navbar/nav-links/nav
 import { HeaderComponent } from './components/layout-area/header/header.component';
 import { FooterComponent } from './components/layout-area/footer/footer.component';
 import { LogoComponent } from './components/layout-area/logo/logo.component';
-import { HttpClientModule } from "@angular/common/http"
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 import { LoginComponent } from './components/auth-area/login/login.component';
 import { RegisterComponent } from './components/auth-area/register/register.component';
@@ -35,6 +35,7 @@ import { ValidationErrorHandlerComponent } from './components/shared-area/valida
 
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -42,6 +43,7 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { MobileNavbarComponent } from './components/layout-area/navbar/mobile-navbar/mobile-navbar.component';
+import { JwtInterceptor } from './services/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -84,6 +86,7 @@ import { MobileNavbarComponent } from './components/layout-area/navbar/mobile-na
     
     MatDialogModule,
     MatIconModule,
+    MatTableModule,
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
@@ -91,7 +94,11 @@ import { MobileNavbarComponent } from './components/layout-area/navbar/mobile-na
 
     IvyCarouselModule
   ],
-  providers: [],
+  providers: [{
+    useClass: JwtInterceptor, // Register our interceptor class as a global service
+    provide: HTTP_INTERCEPTORS, // Tells Angular that this class is an interceptor, thus call it on each request/response
+    multi: true // Tells Angular that it can register it many times
+}],
   bootstrap: [LayoutComponent]
 })
 export class AppModule { }

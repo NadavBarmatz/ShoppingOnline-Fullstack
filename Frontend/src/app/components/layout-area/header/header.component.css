@@ -30,3 +30,18 @@ button {
     font-size: 1.2em;
     z-index: 100;
 }
+
+@media only screen and (max-width: 600px) {
+    h1 {
+        font-size: 3em;
+        padding: 10%;
+    }
+    img {
+        width: 25%;
+        top: 8vh;
+        right: 12vw;
+    }
+    button {
+        display: none;
+    }
+}

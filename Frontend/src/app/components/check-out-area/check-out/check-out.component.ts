@@ -48,7 +48,7 @@ export class CheckOutComponent implements OnInit {
       this.receiptEmail.subject = "SupermarCat - Receipt";
       let emailBody = ''
       this.cartState.getCartProducts.forEach(product=> emailBody += `${product.product.productName} X ${product.quantity} \n`);
-      emailBody += 'total price - ' + this.cartState.getTotalPrice + "\n";
+      emailBody += 'total price - ' + this.cartState.getTotalPrice.toFixed(2) + "\n";
       emailBody += 'sent to ' + this.authState.user.street + " | " + this.authState.user.street + "\n";
       emailBody += 'Paid with credit card ends with ' + this.order.fourLastDigits;
       this.receiptEmail.body = emailBody;
