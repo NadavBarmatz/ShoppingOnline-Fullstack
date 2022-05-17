@@ -12,10 +12,18 @@ export class OrdersListComponent implements OnInit {
 
   public orderId: string;
   public requiredOrder: OrderModel;
+  public orders: OrderModel[];
 
   constructor(private ordersService: OrdersService, private notifications: NotificationsService) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    try{
+      this.orders = await this.ordersService.getAllOrders();
+      console.log(this.orders)
+    }
+    catch(err: any) {
+      this.notifications.error(err);
+    }
   }
 
   public async getOneOrderById() {

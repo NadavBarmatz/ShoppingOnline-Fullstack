@@ -4,8 +4,6 @@ import { NotificationsService } from './../../../services/notifications.service'
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductModel } from 'src/app/models/product.model';
 import { CartState } from 'src/app/mobx/cart-state';
-import {MatDialog} from '@angular/material/dialog';
-import {ProductModalComponent} from "../product-modal/product-modal.component"
 import { CartProductModel } from 'src/app/models/cart-product.model';
 import { CartsService } from 'src/app/services/carts.service';
 import { environment } from 'src/environments/environment';
@@ -27,7 +25,7 @@ export class ProductCardComponent {
 
   public imagesUrl = environment.urls.productsImages;
 
-  constructor(private notifications: NotificationsService, private cartState: CartState, public dialog: MatDialog,
+  constructor(private notifications: NotificationsService, private cartState: CartState, 
     private cartsService: CartsService, public authState: AuthState, private productsService: ProductsService,
     private router: Router) { }
 
@@ -45,10 +43,6 @@ export class ProductCardComponent {
     catch(err: any) {
       this.notifications.error(err);
     }
-  }
-
-  openDialog() {
-    this.dialog.open(ProductModalComponent);
   }
 
   editProduct(productId: string){

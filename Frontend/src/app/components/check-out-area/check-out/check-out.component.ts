@@ -54,6 +54,8 @@ export class CheckOutComponent implements OnInit {
       this.receiptEmail.body = emailBody;
       this.receiptEmail.to = this.authState.user.email;
 
+      this.order.shoppingCartId = this.cartState.cart._id
+
       await this.ordersService.checkout(this.order, this.receiptEmail);
       this.notifications.success("Your order is being processed");
       this.dialogRef.close();

@@ -21,7 +21,6 @@ import { AboutUsComponent } from './components/home-area/about-us/about-us.compo
 import { ProductsListComponent } from './components/products-area/products-list/products-list.component';
 import { ProductCardComponent } from './components/products-area/product-card/product-card.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ProductModalComponent } from './components/products-area/product-modal/product-modal.component';
 import { MyCartComponent } from './components/cart-area/my-cart/my-cart.component';
 import { MobxAngularModule } from "mobx-angular";
 import { AddProductComponent } from './components/admin-area/add-product/add-product.component';
@@ -32,7 +31,6 @@ import { CheckRouteRenderFilterSysDirective } from './directives/check-route-ren
 import { EditProductComponent } from './components/admin-area/edit-product/edit-product.component';
 import { CheckOutComponent } from './components/check-out-area/check-out/check-out.component';
 import { ValidationErrorHandlerComponent } from './components/shared-area/validation-error-handler/validation-error-handler.component';
-
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
@@ -40,7 +38,6 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
-
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { MobileNavbarComponent } from './components/layout-area/navbar/mobile-navbar/mobile-navbar.component';
 import { JwtInterceptor } from './services/jwt.interceptor';
@@ -64,7 +61,6 @@ import { JwtInterceptor } from './services/jwt.interceptor';
     AboutUsComponent,
     ProductsListComponent,
     ProductCardComponent,
-    ProductModalComponent,
     MyCartComponent,
     AddProductComponent,
     AddCategoryComponent,

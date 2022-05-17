@@ -4,7 +4,9 @@
     <form #orderForm="ngForm" (ngSubmit)="getOneOrderById()">
         <mat-form-field appearance="outline">
             <mat-label>Order ID:</mat-label>
-            <input matInput type="text" name="orderId" [(ngModel)]="orderId" required>
+            <mat-select matInput type="text" name="orderId" [(ngModel)]="orderId" required>
+                <mat-option *ngFor="let order of orders" [value]="order._id">{{order.shoppingCart.user.firstName}}</mat-option>
+            </mat-select>
         </mat-form-field>
 
         <button [disabled]="orderForm.invalid">Get Order</button>
@@ -12,11 +14,17 @@
 
     <table *ngIf="requiredOrder">
         <thead>
-
+            <tr>
+                <th>Creation Date</th>
+                <th>Delivery Date</th>
+                <th>Final Price</th>
+            </tr>
         </thead>
         <tbody>
             <tr>
-                <td>{{requiredOrder}}</td>
+                <td>{{requiredOrder.creationDate}}</td>
+                <td>{{requiredOrder.deliveryDate}}</td>
+                <td>{{requiredOrder.finalPrice}}</td>
             </tr>
         </tbody>
     </table>

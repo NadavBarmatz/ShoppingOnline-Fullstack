@@ -40,10 +40,10 @@ export class OrdersService {
     order.shoppingCartId = this.cartState.cart._id;
     await this.createOrder(order);
     this.emailsService.sendMail(receiptEmail);
-    await this.cartsService.DeleteCart(this.cartState.cart._id);
+    // await this.cartsService.DeleteCart(this.cartState.cart._id);
     const newCart = new CartModel();
-    // newCart.userId = this.authState.user._id;
-    // await this.cartsService.createNewUserCart(newCart);
+    newCart.userId = this.authState.user._id;
+    await this.cartsService.createNewUserCart(newCart);
   }
 }
 
