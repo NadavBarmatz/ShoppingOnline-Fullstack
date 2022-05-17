@@ -44,6 +44,7 @@ router.post("/",async (request: Request, response: Response, next: NextFunction)
     try{
         const now = new Date().toLocaleString();
         request.body.creationDate = now;
+        request.body.isOpen = true;
         const cartToAdd = new ShoppingCartModel(request.body);
         const addedCart = await logic.addCart(cartToAdd);
         response.status(201).json(addedCart);
@@ -65,6 +66,19 @@ router.put("/:_id",async (request: Request, response: Response, next: NextFuncti
         next(err);
     }
 });
+
+// Route for closing carts:
+router.put("/close/:id", async (request: Request, response: Response, next: NextFunction) => {
+    try{
+        // request.body._id = request.params._id;
+        const cartToClose = new ShoppingCartModel(request.body);
+        const closedCart = await logic.closeCart(cartToClose);
+        response.status(201).json(closedCart);
+    }
+    catch(err: any) {
+        next(err);
+    }
+})
 
 // Route for deleting a :
 router.delete("/:_id",async (request: Request, response: Response, next: NextFunction) => {

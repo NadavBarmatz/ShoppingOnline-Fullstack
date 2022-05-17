@@ -22,7 +22,7 @@ async function getOneCartByUserId(userId: string): Promise<IShoppingCartModel | 
     // Validate _id:
     if (!mongoose.isValidObjectId(userId)) throw new ClientError(404, `userId ${userId} is invalid`);
 
-    const cart = await ShoppingCartModel.findOne({"userId": userId}).populate("user").exec();
+    const cart = await ShoppingCartModel.findOne({"userId": userId}).where("isOpen").equals(true).populate("user").exec();
 
     // // Validate cart existence:
     // if(cart.length === 0) throw new ClientError(404, "Current user has no cart");
@@ -54,6 +54,11 @@ async function updateCart(cart: IShoppingCartModel): Promise<IShoppingCartModel>
     return updatedCart;
 }
 
+async function closeCart(cart: IShoppingCartModel) {
+    console.log(cart)
+    await ShoppingCartModel.findByIdAndUpdate(cart._id, cart, {returnOriginal: false}).exec();
+}
+
 async function deleteCart(_id: string) {
     // Validate _id:
     if(!mongoose.isValidObjectId(_id)) throw new ClientError(404, `_id ${_id} is not valid`);
@@ -71,5 +76,6 @@ export default {
     getOneCartByUserId,
     addCart,
     updateCart,
-    deleteCart
+    deleteCart,
+    closeCart
 }

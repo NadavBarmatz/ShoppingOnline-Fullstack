@@ -17,7 +17,7 @@ export class LogoutComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     // Check if cart is empty, if so delete from db
     if(this.cartState.getCartProducts.length === 0) {
-      await this.cartsService.DeleteCart(this.cartState.cart._id);
+      await this.cartsService.deleteCart(this.cartState.cart._id);
     }
     // Just in case delete cart from mobx:
     this.cartState.deleteCart();

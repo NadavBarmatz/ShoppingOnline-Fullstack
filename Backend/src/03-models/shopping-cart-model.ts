@@ -4,6 +4,7 @@ import { UserModel } from "./user-model";
 export interface IShoppingCartModel extends Document {
     userId: Schema.Types.ObjectId;
     creationDate: string;
+    isOpen: boolean;
 };
 
 const ShoppingCartSchema = new Schema({
@@ -14,6 +15,10 @@ const ShoppingCartSchema = new Schema({
     creationDate: {
         type: String,
         required: [true, "creationDate is required"],
+    },
+    isOpen: {
+        type: Boolean,
+        required: [true, "isOpen is required"]
     }
 }, {
     versionKey: false,
@@ -28,4 +33,7 @@ ShoppingCartSchema.virtual("user", {
     justOne: true
 });
 
+
+
+// Will be used for carts in process:
 export const ShoppingCartModel = model("ShoppingCartModel", ShoppingCartSchema, "shoppingCarts");
