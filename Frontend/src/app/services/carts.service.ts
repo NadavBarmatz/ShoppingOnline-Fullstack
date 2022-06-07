@@ -17,7 +17,6 @@ export class CartsService {
     cartProducts: environment.urls.cartProducts,
     cartProductsByCart: environment.urls.cartProductsByCart,
     allCarts: environment.urls.carts,
-    closeCarts: environment.urls.closeCarts
   }
 
   constructor(private http: HttpClient, private cartState: CartState, private authState: AuthState) { }
@@ -76,13 +75,8 @@ export class CartsService {
     this.cartState.saveCartProducts(cartProducts)
   }
 
-  public async closeCart(cart: CartModel): Promise<CartModel> {
-    const closedCart = await firstValueFrom(this.http.put<CartModel>(this.urls.closeCarts + cart._id, cart));
-    this.cartState.deleteCart();
-    return closedCart;
-  }
-
   public async deleteCart(cartId: string): Promise<void> {
+    console.log("here");
     // Delete From DB
     await firstValueFrom(this.http.delete<void>(this.urls.allCarts + cartId));
     // Delete From MobX
@@ -94,6 +88,13 @@ export class CartsService {
     await firstValueFrom(this.http.delete<void>(this.urls.cartProducts + cartProductId));
     // Delete From MobX
     this.cartState.deleteCartProduct(cartProductId);
+  }
+
+  public async deleteAllCartProductsByCartId(cartId: string): Promise<void> {
+    // Delete From DB
+    await firstValueFrom(this.http.delete<void>(this.urls.cartProductsByCart + cartId));
+    // Delete From MobX
+    this.cartState.deleteCartProducts();
   }
   
 }

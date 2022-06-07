@@ -48,6 +48,11 @@ export class CartState {
     }
   }
 
+  @action
+  public deleteCartProducts() {
+    this.cartProducts = [];
+  }
+
   @computed
   public get getCart(): CartModel {
     return this.cart;
@@ -70,4 +75,11 @@ export class CartState {
     this.cartProducts.forEach(product => count += product.quantity);
     return count;
   }
+
+  @computed 
+  public get productsNameList(): string[] {
+    const namesArray: string[] = []; 
+    this.cartProducts.forEach(product => namesArray.push(product.product.productName));
+    return namesArray;
+  } 
 }

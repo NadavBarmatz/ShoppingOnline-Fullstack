@@ -1,3 +1,13 @@
+.container {
+    display: flex;
+}
+
+.cart-products-list {
+    text-align: left;
+    width: 50%;
+    overflow-y: scroll;
+}
+
 form {
     width: 100%;
 }

@@ -21,6 +21,7 @@ export class ProductCardComponent {
 
   @Input()
   public product: ProductModel;
+  // initial quantity:
   public quantity: number = 1;
 
   public imagesUrl = environment.urls.productsImages;
@@ -29,6 +30,7 @@ export class ProductCardComponent {
     private cartsService: CartsService, public authState: AuthState, private productsService: ProductsService,
     private router: Router) { }
 
+    // dealing add product to cart:
   public async addToCart() {
     try{
       const productToAdd = new CartProductModel();

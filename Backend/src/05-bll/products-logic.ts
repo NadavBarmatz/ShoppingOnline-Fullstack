@@ -3,8 +3,6 @@ import mongoose from 'mongoose';
 import { v4 as uuid } from 'uuid';
 import safeDelete from '../01-utils/safe-delete';
 import { IProductModel, ProductModel } from '../03-models/product-model';
-import path from 'path';
-import fs from "fs"
 
 async function getAllProducts(): Promise<IProductModel[]> {
     return ProductModel.find().populate("category");

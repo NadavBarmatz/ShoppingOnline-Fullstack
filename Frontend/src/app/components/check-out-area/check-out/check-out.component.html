@@ -1,33 +1,44 @@
-<form (ngSubmit)="checkOut()" #checkoutForm="ngForm">
-    <p>Total Cart: {{cartState.getTotalPrice | currency}}</p>
-
-    <mat-form-field appearance="outline">
-        <mat-label>City</mat-label>
-        <mat-select name="cityId" [(ngModel)]="order.cityId" #city="ngModel" required>
-          <mat-option *ngFor="let city of cities" [value]="city._id">{{city.name}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <app-validation-error-handler [fieldName]="city"></app-validation-error-handler>
-    
-    <mat-form-field appearance="outline">
-        <mat-label>Street</mat-label>
-        <input matInput type="text" name="street" [(ngModel)]="order.street" #street="ngModel" required />
-    </mat-form-field>
-    <app-validation-error-handler [fieldName]="street"></app-validation-error-handler>
-    
-    <mat-form-field appearance="outline">
-        <mat-label>Shipping Date</mat-label>
-        <input matInput type="date" name="deliveryDate" [min]="minDate" [(ngModel)]="order.deliveryDate" #shippingDate="ngModel" required />
-    </mat-form-field>
-    <app-validation-error-handler [fieldName]="shippingDate"></app-validation-error-handler>
-    
-    <label>Payments:</label>
-    
-    <mat-form-field appearance="outline">
-        <mat-label>Credit Card:</mat-label>
-        <input matInput type="text" [pattern]="creditCardRegex" minlength="4" maxlength="4" name="fourLastDigits" [(ngModel)]="order.fourLastDigits" #creditCard="ngModel" required />
-    </mat-form-field>
-    <app-validation-error-handler [fieldName]="creditCard" minLength="4" maxLength="4"></app-validation-error-handler>
-    
-    <button [disabled]="checkoutForm.invalid">Order</button>
-</form>
+<div class="container">
+    <div class="cart-products-list">
+        <input type="text" [(ngModel)]="regexText" />
+            <p *ngFor="let product of cartProductsList">
+                <span [innerHtml]="product.product.productName | highlightText:regexText"></span>
+                <span> X{{product.quantity}} - {{product.totalPrice}}</span>
+            </p>
+            <br>
+            <p>
+                Total Cart: {{cartState.getTotalPrice | currency}}
+            </p>
+    </div>
+    <form (ngSubmit)="checkOut()" #checkoutForm="ngForm">
+        <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <mat-select name="cityId" [(ngModel)]="order.cityId" #city="ngModel" required>
+            <mat-option *ngFor="let city of cities" [value]="city._id">{{city.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <app-validation-error-handler [fieldName]="city"></app-validation-error-handler>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Street</mat-label>
+            <input matInput type="text" name="street" [(ngModel)]="order.street" #street="ngModel" required />
+        </mat-form-field>
+        <app-validation-error-handler [fieldName]="street"></app-validation-error-handler>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Shipping Date</mat-label>
+            <input matInput type="date" name="deliveryDate" [min]="minDate" [(ngModel)]="order.deliveryDate" #shippingDate="ngModel" required />
+        </mat-form-field>
+        <app-validation-error-handler [fieldName]="shippingDate"></app-validation-error-handler>
+        
+        <label>Payments:</label>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Credit Card:</mat-label>
+            <input matInput type="text" [pattern]="creditCardRegex" minlength="4" maxlength="4" name="fourLastDigits" [(ngModel)]="order.fourLastDigits" #creditCard="ngModel" required />
+        </mat-form-field>
+        <app-validation-error-handler [fieldName]="creditCard" minLength="4" maxLength="4"></app-validation-error-handler>
+        
+        <button [disabled]="checkoutForm.invalid">Order</button>
+    </form>
+</div>

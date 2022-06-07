@@ -4,7 +4,6 @@ import { UserModel } from "./user-model";
 export interface IShoppingCartModel extends Document {
     userId: Schema.Types.ObjectId;
     creationDate: string;
-    isOpen: boolean;
 };
 
 const ShoppingCartSchema = new Schema({
@@ -16,10 +15,6 @@ const ShoppingCartSchema = new Schema({
         type: String,
         required: [true, "creationDate is required"],
     },
-    isOpen: {
-        type: Boolean,
-        required: [true, "isOpen is required"]
-    }
 }, {
     versionKey: false,
     id: false,

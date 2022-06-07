@@ -1,4 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
+import verifyToken from "../02-middleware/verify-token";
 import { ShoppingCartModel } from "../03-models/shopping-cart-model";
 import logic from "../05-bll/shopping-cart-logic";
 
@@ -28,7 +29,7 @@ router.get("/:_id",async (request: Request, response: Response, next: NextFuncti
 });
 
 // Route for getting one by userId :
-router.get("/by-user/:userId",async (request: Request, response: Response, next: NextFunction) => {
+router.get("/by-user/:userId", async (request: Request, response: Response, next: NextFunction) => {
     try{
         const userId = request.params.userId;
         const cart = await logic.getOneCartByUserId(userId);
@@ -40,7 +41,7 @@ router.get("/by-user/:userId",async (request: Request, response: Response, next:
 });
 
 // Route for adding a :
-router.post("/",async (request: Request, response: Response, next: NextFunction) => {
+router.post("/", verifyToken, async (request: Request, response: Response, next: NextFunction) => {
     try{
         const now = new Date().toLocaleString();
         request.body.creationDate = now;
@@ -67,21 +68,8 @@ router.put("/:_id",async (request: Request, response: Response, next: NextFuncti
     }
 });
 
-// Route for closing carts:
-router.put("/close/:id", async (request: Request, response: Response, next: NextFunction) => {
-    try{
-        // request.body._id = request.params._id;
-        const cartToClose = new ShoppingCartModel(request.body);
-        const closedCart = await logic.closeCart(cartToClose);
-        response.status(201).json(closedCart);
-    }
-    catch(err: any) {
-        next(err);
-    }
-})
-
 // Route for deleting a :
-router.delete("/:_id",async (request: Request, response: Response, next: NextFunction) => {
+router.delete("/:_id", verifyToken, async (request: Request, response: Response, next: NextFunction) => {
     try{
         const idToDelete = request.params._id;
         await logic.deleteCart(idToDelete);
@@ -91,6 +79,5 @@ router.delete("/:_id",async (request: Request, response: Response, next: NextFun
         next(err);
     }
 });
-
 
 export default router;

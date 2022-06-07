@@ -4,8 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CartState } from 'src/app/mobx/cart-state';
 import { CartProductModel } from 'src/app/models/cart-product.model';
 import { CartsService } from 'src/app/services/carts.service';
-import { NotificationsService } from 'src/app/services/notifications.service';
 import { CheckOutComponent } from '../../check-out-area/check-out/check-out.component';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,15 +17,18 @@ export class MyCartComponent implements OnInit {
   @Output()
   public isCartClicked = new EventEmitter();
   
+  // mobile purposes:
   @Input()
   public seeCart: boolean = false;
-
+  
+  // mobile purposes:
   public isSideCart: boolean = true;
 
   constructor(public cartState: CartState, private cartsService: CartsService, private notifications: NotificationsService,
     public dialog: MatDialog, private router: Router) { }
 
     ngOnInit(): void {
+      // if in cart page, do not render side-cart:
       if(this.router.url === "/my-cart") {
         this.isSideCart = false;
       }
@@ -33,9 +36,11 @@ export class MyCartComponent implements OnInit {
 
   public async deleteProductFromCart(cartProductId: string) {
     try{
+      console.log("try")
       this.cartsService.deleteCartProduct(cartProductId);
     }
     catch(err: any) {
+      console.log("catch")
       this.notifications.error(err);
     }
   }
@@ -57,7 +62,11 @@ export class MyCartComponent implements OnInit {
   }
 
   public openCheckoutDialog() {
-    const dialogRef = this.dialog.open(CheckOutComponent)
+    this.dialog.open(CheckOutComponent)
+  }
+
+  public emptyCart() {
+    this.cartsService.deleteAllCartProductsByCartId(this.cartState.cart._id);
   }
 
 }

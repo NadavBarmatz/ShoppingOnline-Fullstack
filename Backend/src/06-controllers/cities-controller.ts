@@ -1,6 +1,7 @@
 import { CityModel } from './../03-models/city-model';
 import express, { NextFunction, Request, Response } from "express";
 import logic from "../05-bll/cities-logic";
+import verifyAdmin from '../02-middleware/verify-admin';
 
 const router = express.Router();
 
@@ -28,7 +29,7 @@ router.get("/:_id",async (request: Request, response: Response, next: NextFuncti
 });
 
 // Route for adding a :
-router.post("/",async (request: Request, response: Response, next: NextFunction) => {
+router.post("/", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try{
         const cityToAdd = new CityModel(request.body);
         const addedCity = await logic.addCity(cityToAdd);
@@ -40,7 +41,7 @@ router.post("/",async (request: Request, response: Response, next: NextFunction)
 });
 
 // Route for updating a :
-router.put("/:_id",async (request: Request, response: Response, next: NextFunction) => {
+router.put("/:_id", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try{
         request.body._id = request.params._id;
         const cityToUpdate = new CityModel(request.body);
@@ -53,7 +54,7 @@ router.put("/:_id",async (request: Request, response: Response, next: NextFuncti
 });
 
 // Route for deleting a :
-router.delete("/:_id",async (request: Request, response: Response, next: NextFunction) => {
+router.delete("/:_id", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try{
         const _id = request.params._id;
         await logic.deleteCity(_id);

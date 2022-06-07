@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { EmailModel } from 'src/app/models/email.model';
 import { EmailRegex } from 'src/app/models/regular-expressions';
 import { EmailsService } from 'src/app/services/emails.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
@@ -12,16 +11,14 @@ import { NotificationsService } from 'src/app/services/notifications.service';
 export class DiscountComponent {
 
   public discountPercentage: number = 10;
-  public discountEmail = new EmailModel();
+  public discountEmailRecipient: string;
   public emailRegex = EmailRegex;
 
   constructor(private emailsServices: EmailsService, private notifications: NotificationsService) { }
 
   public async sendDiscount() {
     try{
-      this.discountEmail.subject = "SupermarCat - Discount Mail";
-      this.discountEmail.body = "Thank you for taking your time to check the discount feature";
-      this.emailsServices.sendMail(this.discountEmail);
+      await this.emailsServices.createDiscountEmail(this.discountEmailRecipient);
       this.notifications.success("an email has ACTUALLY been sent to your ACTUAL email")
     }
     catch(err: any) {

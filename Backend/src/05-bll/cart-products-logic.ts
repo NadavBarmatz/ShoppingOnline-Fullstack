@@ -59,10 +59,22 @@ async function deleteCartProduct(_id: string) {
     if(!deletedCartProd) throw new ClientError(404, "Cart Product not found");
 }
 
+async function deleteCartProductsByCartId(cartId: string) {
+    // Validate _id:
+    if(!mongoose.isValidObjectId(cartId)) throw new ClientError(404, `cartId ${cartId} is not valid`);
+
+    // getting all cart Products:
+    const cartProducts = await getAllCartProducts(cartId);
+
+    for(let cartProduct of cartProducts) {
+        cartProduct.delete();
+    }
+}
+
 export default {
     getAllCartProducts,
-    // getOneCartProduct,
     addCartProduct,
     updateCartProduct,
-    deleteCartProduct
+    deleteCartProduct,
+    deleteCartProductsByCartId
 }

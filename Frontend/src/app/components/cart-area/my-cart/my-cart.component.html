@@ -32,5 +32,8 @@
             </tr>
         </tbody>
     </table>
-    <button [disabled]="cartState.productTotalCount === 0" (click)="openCheckoutDialog()">checkout</button>
+    <div class="btn-area">
+        <button class="empty-cart-btn" [disabled]="cartState.productTotalCount === 0" (click)="emptyCart()">Empty cart</button>
+        <button [disabled]="cartState.productTotalCount === 0" (click)="openCheckoutDialog()">Checkout</button>
+    </div>
 </div>

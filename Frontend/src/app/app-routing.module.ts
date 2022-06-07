@@ -25,9 +25,6 @@ const routes: Routes = [
   {path: "edit-product/:productId", canActivate: [AdminGuard], component: EditProductComponent},
   {path: "add-category", canActivate: [AdminGuard], component: AddCategoryComponent},
 
-  // Lazy Loading of OrdersModule
-  {path: "orders", loadChildren: () => import('./components/orders-area/orders.module').then(m => m.OrdersModule)},
-
   // Site routes:
   { path: "home", component: HomeComponent},
   { path: "shop/all-products", canActivate: [UserGuard], component: ProductsListComponent },

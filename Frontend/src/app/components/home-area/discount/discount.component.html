@@ -10,7 +10,7 @@
         </div>
     
         <form #emailForm="ngForm" class="email-form">
-            <input #email="ngModel" type="text" placeholder="yourmail@mail.com" name="email" [(ngModel)]="discountEmail.to" required [pattern]="emailRegex">
+            <input #email="ngModel" type="text" placeholder="yourmail@mail.com" name="email" [(ngModel)]="discountEmailRecipient" required [pattern]="emailRegex">
             <button [disabled]="emailForm.invalid" (click)="sendDiscount()">SEND</button>
             <app-validation-error-handler [fieldName]="email" ></app-validation-error-handler>
         </form>

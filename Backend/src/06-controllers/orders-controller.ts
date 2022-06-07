@@ -1,4 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
+import verifyAdmin from "../02-middleware/verify-admin";
+import verifyToken from "../02-middleware/verify-token";
 import { OrderModel } from "../03-models/order-model";
 import logic from "../05-bll/orders-logic";
 
@@ -28,7 +30,7 @@ router.get("/:_id",async (request: Request, response: Response, next: NextFuncti
 });
 
 // Route for adding a :
-router.post("/",async (request: Request, response: Response, next: NextFunction) => {
+router.post("/", verifyToken, async (request: Request, response: Response, next: NextFunction) => {
     try{
         const orderToAdd = new OrderModel(request.body);
         const addedOrder = await logic.addOrder(orderToAdd);
@@ -39,21 +41,9 @@ router.post("/",async (request: Request, response: Response, next: NextFunction)
     }
 });
 
-// Route for updating a :
-router.put("/:_id",async (request: Request, response: Response, next: NextFunction) => {
-    try{
-        request.body._id = request.params._id;
-        const orderToUpdate = new OrderModel(request.body);
-        const updatedOrder = await logic.updateOrder(orderToUpdate);
-        response.status(201).json(updatedOrder);
-    }
-    catch(err: any) {
-        next(err);
-    }
-});
 
 // Route for deleting a :
-router.delete("/:_id",async (request: Request, response: Response, next: NextFunction) => {
+router.delete("/:_id", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try{
         const idToDelete = request.params._id;
         await logic.deleteOrder(idToDelete);

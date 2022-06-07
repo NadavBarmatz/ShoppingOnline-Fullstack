@@ -18,8 +18,8 @@ const transport = nodemailer.createTransport({
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD
     },
-    // debug: false,
-    // logger: true
+    debug: false,
+    logger: true
 });
 
 function send(email : EmailModel) {

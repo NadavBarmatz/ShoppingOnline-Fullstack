@@ -37,6 +37,7 @@ a {
     font-family: var(--font400);
 }
 
+input[type=button],
 button {
     background-color: var(--clr800);
     color: var(--clr000);

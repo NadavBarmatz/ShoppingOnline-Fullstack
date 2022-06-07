@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthState } from 'src/app/mobx/auth-state';
 import { CartState } from 'src/app/mobx/cart-state';
 
@@ -7,14 +7,12 @@ import { CartState } from 'src/app/mobx/cart-state';
   templateUrl: './auth-menu.component.html',
   styleUrls: ['./auth-menu.component.css']
 })
-export class AuthMenuComponent implements OnInit {
+export class AuthMenuComponent {
 
+  // for mobile purposes:
   public openMenu: boolean = false;
 
   constructor(public authState: AuthState, public cartState: CartState) { }
-
-  ngOnInit(): void {
-  }
 
   public openSideMenu() {
     this.openMenu = ! this.openMenu;

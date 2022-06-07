@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CategoriesState } from '../mobx/categories-state';
-import { ProductsState } from '../mobx/products-state';
 import { CategoryModel } from '../models/category.model';
-import { ProductModel } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'

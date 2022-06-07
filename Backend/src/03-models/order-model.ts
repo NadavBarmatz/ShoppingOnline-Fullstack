@@ -20,7 +20,7 @@ const OrderSchema = new Schema({
     finalPrice: {
         type: Number,
         required: [true, "finalPrice is required"],
-        min: [1, "finalPrice must be min 1"],
+        min: [0.01, "finalPrice must be min 0.01"],
     },
     cityId: {
         type: Schema.Types.ObjectId,

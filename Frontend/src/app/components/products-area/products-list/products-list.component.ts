@@ -1,4 +1,4 @@
-import { Component, OnInit,  ViewChild, ElementRef, AfterViewChecked, AfterViewInit, AfterContentChecked, HostListener } from '@angular/core';
+import { Component, OnInit,  ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ProductsState } from 'src/app/mobx/products-state';
 import { ProductModel } from 'src/app/models/product.model';
@@ -16,8 +16,6 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
 
   @ViewChild('slideToMain') element: ElementRef;
   ngAfterViewInit(){
-    // this.element.nativeElement.scrollIntoView({behavior: 'smooth'});
-    // console.log(this.main)
   }
 
   public products: ProductModel[];
@@ -29,8 +27,6 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     try{
-      // Get user cart from DB. if not exist, create one:
-      await this.cartsService.validateCartExistenceAndCreateIfNoExist();
       if(!this.productsState.isProductsInMobx) {
         // get products from db:
         this.products = await this.productsService.getAllProducts();
@@ -56,7 +52,7 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
     this.isCartShown = !this.isCartShown;
   }
 
-  
+  // used to make cart-side-tab animate when adding products to cart
   @ViewChild('cartTab') cartTab: ElementRef ;
   public forceHover() {
     this.cartTab.nativeElement.classList.add("hover-tab");

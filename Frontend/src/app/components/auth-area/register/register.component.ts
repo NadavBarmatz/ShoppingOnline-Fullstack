@@ -34,10 +34,12 @@ export class RegisterComponent implements OnInit {
     this.cities = await this.citiesService.getAllCities();
   }
   
-    public nextStep(): void {
-      this.step++;
-    }
-
+  // 2 step form next action:
+  public nextStep(): void {
+    this.step++;
+  }
+  
+  // 2 step form previous action:
   public previous(): void {
     this.step--;
   }

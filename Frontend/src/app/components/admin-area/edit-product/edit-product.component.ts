@@ -24,9 +24,13 @@ export class EditProductComponent implements OnInit {
 
   async ngOnInit() {
     try{
+      // getting productId from url:
       this.productId = this.activatedRoute.snapshot.paramMap.get("productId");
+      // getting product from server:
       this.product = await this.productsService.getOneProduct(this.productId);
+      // getting categories from server:
       this.categories = await this.categoriesService.getAllCategories();
+      // make sure products are in mobX:
       if(!this.productsState.isProductsInMobx) {
         this.productsService.getAllProducts();
       }
@@ -37,7 +41,6 @@ export class EditProductComponent implements OnInit {
   }
 
   public async editProduct() {
-    // console.log(this.product.image)
     try {
       await this.productsService.updateProduct(this.product);
       this.notifications.success("A new product has been update successfully");

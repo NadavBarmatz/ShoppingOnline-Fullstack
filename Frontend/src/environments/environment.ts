@@ -16,12 +16,12 @@ export const environment = {
     productsImages: mainPath + "products/images/",
     productsByCategory: mainPath + "products/by-category/",
     carts: mainPath + "carts/",
-    closeCarts: mainPath + "carts/close/",
     cartsByUser: mainPath + "carts/by-user/",
     cartProducts: mainPath + "cart-products/",
     cartProductsByCart: mainPath + "cart-products/by-cart/",
     orders: mainPath + "orders/",
     emails: mainPath + 'emails/',
+    downloadReceipt: mainPath + 'receipt/',
   }
 };
 

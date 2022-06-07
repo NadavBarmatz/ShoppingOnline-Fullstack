@@ -31,19 +31,7 @@ async function addOrder(order: IOrderModel): Promise<IOrderModel> {
     return addedOrder;
 }
 
-async function updateOrder(order: IOrderModel): Promise<IOrderModel> {
-    // Validate cart:
-    const errors = order.validateSync();
-    if(errors) throw new ClientError(400, errors.message);
 
-    // update:
-    const updatedOrder = await OrderModel.findByIdAndUpdate(order._id, order, {returnOriginal: false}).exec();
-
-    // Validate if cart exist in DB:
-    if(!updatedOrder) throw new ClientError(404, "Order is not found");
-
-    return updatedOrder;
-}
 
 async function deleteOrder(_id: string) {
     // Validate _id:
@@ -60,6 +48,5 @@ export default {
     getAllOrders,
     getOneOrder,
     addOrder,
-    updateOrder,
     deleteOrder
 }

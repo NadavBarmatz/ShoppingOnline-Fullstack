@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthState } from 'src/app/mobx/auth-state';
-import { CartModel } from 'src/app/models/cart.model';
 import { CredentialsModel } from 'src/app/models/credentials.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CartsService } from 'src/app/services/carts.service';
@@ -17,7 +15,7 @@ export class LoginComponent {
   public credentials = new CredentialsModel();
 
   constructor(private authService: AuthService, private router: Router, private cartsService: CartsService,
-              private notifications: NotificationsService,private authState: AuthState) { }
+              private notifications: NotificationsService) { }
 
   public async login(): Promise<void> {
     try {

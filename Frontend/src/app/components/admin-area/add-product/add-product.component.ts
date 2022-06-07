@@ -21,7 +21,9 @@ export class AddProductComponent implements OnInit {
               private productsService: ProductsService, private router: Router, private productsState: ProductsState) { }
 
   async ngOnInit() {
+    // getting all categories from server:
     this.categories = await this.categoriesService.getAllCategories();
+    // Make sure products are stored in mobX:
     if(!this.productsState.isProductsInMobx) {
       this.productsService.getAllProducts();
     }

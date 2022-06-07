@@ -6,9 +6,9 @@
         <div class="fields">
             <mat-form-field appearance="outline" >
                 <mat-label>Username: </mat-label>
-                <input matInput #username="ngModel" type="text" name="username" required minlength="4" [(ngModel)]="credentials.username">
+                <input matInput #username="ngModel" type="text" name="username" required minlength="3" [(ngModel)]="credentials.username">
             </mat-form-field>
-            <app-validation-error-handler [fieldName]="username" minLength="4"></app-validation-error-handler>
+            <app-validation-error-handler [fieldName]="username" minLength="3"></app-validation-error-handler>
             
             <mat-form-field appearance="outline" >
                 <mat-label>Password: </mat-label>

@@ -1,5 +1,7 @@
 import express, {NextFunction, Request, Response} from "express";
 import path from "path";
+import verifyAdmin from "../02-middleware/verify-admin";
+import verifyToken from "../02-middleware/verify-token";
 import {ProductModel} from "../03-models/product-model";
 import logic from "../05-bll/products-logic";
 
@@ -16,7 +18,7 @@ router.get("/", async (request : Request, response : Response, next : NextFuncti
 });
 
 // Route for getting one :
-router.get("/:_id", async (request : Request, response : Response, next : NextFunction) => {
+router.get("/:_id", verifyToken, async (request : Request, response : Response, next : NextFunction) => {
     try {
         const _id = request.params._id;
         const product = await logic.getOneProduct(_id);
@@ -27,7 +29,7 @@ router.get("/:_id", async (request : Request, response : Response, next : NextFu
 });
 
 // Route for getting all by category:
-router.get("/by-category/:catId", async (request : Request, response : Response, next : NextFunction) => {
+router.get("/by-category/:catId", verifyToken, async (request : Request, response : Response, next : NextFunction) => {
     try {
         const _id = request.params.catId;
         const products = await logic.getProductsByCategory(_id);
@@ -38,7 +40,7 @@ router.get("/by-category/:catId", async (request : Request, response : Response,
 });
 
 // Route for adding a :
-router.post("/", async (request : Request, response : Response, next : NextFunction) => {
+router.post("/", verifyAdmin, async (request : Request, response : Response, next : NextFunction) => {
     try {
         // request.body doesn't contain files.
         request.body.image = request.files?.image; // "image" is the parameter name sent from Frontend
@@ -51,7 +53,7 @@ router.post("/", async (request : Request, response : Response, next : NextFunct
 });
 
 // Route for updating a :
-router.put("/:_id", async (request : Request, response : Response, next : NextFunction) => {
+router.put("/:_id", verifyAdmin, async (request : Request, response : Response, next : NextFunction) => {
     try {
         request.body._id = request.params._id;
         request.body.image = request.files?.image;
@@ -64,7 +66,7 @@ router.put("/:_id", async (request : Request, response : Response, next : NextFu
 });
 
 // Route for deleting a :
-router.delete("/:_id", async (request : Request, response : Response, next : NextFunction) => {
+router.delete("/:_id", verifyAdmin, async (request : Request, response : Response, next : NextFunction) => {
     try {
         const idToDelete = request.params._id;
         await logic.deleteProduct(idToDelete);

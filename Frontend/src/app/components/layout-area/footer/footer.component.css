@@ -16,3 +16,7 @@ div {
     align-items: center;
     justify-content: space-around;
 }
+
+.orders-count {
+    padding-right: 1vw;
+}

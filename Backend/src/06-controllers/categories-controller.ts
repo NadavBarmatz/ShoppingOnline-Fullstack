@@ -1,4 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
+import verifyAdmin from "../02-middleware/verify-admin";
 import { CategoryModel } from "../03-models/category-model";
 import logic from "../05-bll/categories-logic";
 
@@ -28,7 +29,7 @@ router.get("/:_id",async (request: Request, response: Response, next: NextFuncti
 });
 
 // Route for adding a :
-router.post("/",async (request: Request, response: Response, next: NextFunction) => {
+router.post("/", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try{
         const categoryToAdd = new CategoryModel(request.body);
         const addedCategory = await logic.addCategory(categoryToAdd);
@@ -40,7 +41,7 @@ router.post("/",async (request: Request, response: Response, next: NextFunction)
 });
 
 // Route for updating a :
-router.put("/:_id",async (request: Request, response: Response, next: NextFunction) => {
+router.put("/:_id", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try{
         request.body._id = request.params._id;
         const categoryToUpdate = new CategoryModel(request.body);
@@ -53,7 +54,7 @@ router.put("/:_id",async (request: Request, response: Response, next: NextFuncti
 });
 
 // Route for deleting a :
-router.delete("/:_id",async (request: Request, response: Response, next: NextFunction) => {
+router.delete("/:_id", verifyAdmin, async (request: Request, response: Response, next: NextFunction) => {
     try{
         const idToDelete = request.params._id;
         await logic.deleteCategory(idToDelete);

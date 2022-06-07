@@ -12,6 +12,14 @@ class DevelopmentConfig extends Config {
     }
 }
 
-const config = new DevelopmentConfig();
+class ProductionConfig extends Config {
+    public mongoConnectionString = "";
+    public constructor() {
+        super();
+        this.loginExpiresIn = "12h";
+    }
+}
+
+const config = process.env.ENVIRONMENT === "development" ? new DevelopmentConfig() : new ProductionConfig();
 
 export default config;    

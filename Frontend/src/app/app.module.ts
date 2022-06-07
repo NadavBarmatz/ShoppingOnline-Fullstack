@@ -41,6 +41,8 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
 import { MobileNavbarComponent } from './components/layout-area/navbar/mobile-navbar/mobile-navbar.component';
 import { JwtInterceptor } from './services/jwt.interceptor';
+import { HighlightTextPipe } from './pipes/highlight-text.pipe';
+import { ConfirmationComponent } from './components/check-out-area/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,8 @@ import { JwtInterceptor } from './services/jwt.interceptor';
     CheckOutComponent,
     ValidationErrorHandlerComponent,
     MobileNavbarComponent,
+    HighlightTextPipe,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,

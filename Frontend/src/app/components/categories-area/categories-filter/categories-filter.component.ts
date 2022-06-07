@@ -1,6 +1,6 @@
 import { ScreenSizeService } from 'src/app/services/screen-size.service';
 import { CategoriesService } from 'src/app/services/categories.service';
-import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { CategoryModel } from 'src/app/models/category.model';
 import { CategoriesState } from 'src/app/mobx/categories-state';

@@ -14,6 +14,7 @@ export class AboutUsComponent implements OnInit {
   @ViewChild('slideToSection') element: ElementRef;
 
   ngOnInit() {
+    // service for scrolling to support getting to 'about us' section in homepage from anywhere on site:
       this.scrollService.toSlide.subscribe((data)=>{
         if(data) {
           this.element.nativeElement.scrollIntoView({behavior: 'smooth'});

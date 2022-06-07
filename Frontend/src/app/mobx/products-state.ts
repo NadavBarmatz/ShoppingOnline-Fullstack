@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { action, computed, makeObservable, observable } from "mobx";
+import { action, computed, makeAutoObservable, observable } from "mobx";
 import { ProductModel } from "../models/product.model";
 
 
@@ -10,7 +10,7 @@ export class ProductsState {
     public products: ProductModel[] = [];
     
     constructor() {
-        makeObservable(this);
+        makeAutoObservable(this);
     }
 
     @action
@@ -42,7 +42,7 @@ export class ProductsState {
 
     @computed 
     public get productsCount() : number {
-        return this.products.length
+        return this.products.length;
     }
 
 }

@@ -3,4 +3,7 @@
     <div class="links">
         <app-nav-links class="inner-links"></app-nav-links>
     </div>
+    <div class="orders-count" *ngIf="ordersState.ordersCount!==0">
+        <p>{{ordersState.ordersCount}} orders have been processed until now</p>
+    </div>
 </div>

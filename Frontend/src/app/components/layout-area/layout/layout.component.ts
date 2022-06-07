@@ -11,9 +11,9 @@ import { ProductsService } from 'src/app/services/products.service';
 export class LayoutComponent implements OnInit {
   constructor(private authState: AuthState, private cartsService: CartsService, private productsService: ProductsService) { }
   async ngOnInit() {
+    await this.productsService.getAllProducts();
       if(this.authState.isLoggedIn){
         await this.cartsService.validateCartExistenceAndCreateIfNoExist();
-        await this.productsService.getAllProducts();
       }
   }
 

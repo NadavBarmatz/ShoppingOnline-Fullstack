@@ -49,3 +49,13 @@ p {
     display: none;
 }
 
+.btn-area {
+    display: flex;
+    justify-content: space-around;
+}
+
+.empty-cart-btn:hover {
+    background-color: rgb(203, 89, 89);
+    color: white;
+}
+
